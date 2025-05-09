@@ -15,11 +15,11 @@ const serviceCategories = [
     description: 'Websites, E-commerce platforms, and Mobile apps development for modern businesses.'
   },
   {
-    id: 'jewelry',
-    title: 'Jewelry',
+    id: 'Jewellery',
+    title: 'Jewellery',
     icon: Watch,
     gradient: 'from-gold-light to-gold-dark',
-    description: 'Expert CAD designing, 3D rendering, and premium jewelry design solutions.'
+    description: 'Expert CAD designing, 3D rendering, and premium Jewellery design solutions.'
   },
   {
     id: 'creative',
@@ -69,8 +69,8 @@ const ServicesOverview = () => {
                   <p className="text-gray-600">{category.description}</p>
                 </CardContent>
                 <CardFooter>
-                  <Link 
-                    to={`/services#${category.id}`} 
+                  <Link
+                    to={`/services#${category.id}`}
                     className="text-gold hover:text-gold-dark flex items-center font-medium"
                   >
                     Learn More <ArrowRight size={16} className="ml-1" />

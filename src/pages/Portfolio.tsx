@@ -18,7 +18,7 @@ import Diamond from '../components/3d/Diamond';
 // Portfolio data
 const portfolioCategories = [
   'All',
-  'Jewelry CAD',
+  'Jewellery CAD',
   'Web Development',
   'Mobile Apps',
   'Creative Media',
@@ -29,7 +29,7 @@ const portfolioItems = [
   {
     id: 1,
     title: 'Diamond Ring Collection',
-    category: 'Jewelry CAD',
+    category: 'Jewellery CAD',
     image: '/diamond.webp',
     description: 'CAD design and rendering for a premium diamond ring collection.'
   },
@@ -38,14 +38,14 @@ const portfolioItems = [
     title: 'Gold Emporium E-commerce',
     category: 'Web Development',
     image: '/e-commerce.webp',
-    description: 'Custom e-commerce platform for a high-end jewelry retailer.'
+    description: 'Custom e-commerce platform for a high-end Jewellery retailer.'
   },
   // {
   //   id: 3,
   //   title: 'Jewel Finder Mobile App',
   //   category: 'Mobile Apps',
   //   // image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158',
-  //   description: 'iOS and Android app for a jewelry marketplace.'
+  //   description: 'iOS and Android app for a Jewellery marketplace.'
   // },
   {
     id: 3,
@@ -64,31 +64,31 @@ const portfolioItems = [
   {
     id: 5,
     title: 'Gemstone Pendant Series',
-    category: 'Jewelry CAD',
+    category: 'Jewellery CAD',
     image: '/pandant.webp',
     description: 'Detailed CAD designs for a series of gemstone pendants.'
   },
   {
     id: 6,
     title: 'Gold Earrings Collection',
-    category: 'Jewelry CAD',
+    category: 'Jewellery CAD',
     image: '/earings.webp',
     description: '3D rendering of an exclusive gold earrings collection.'
   },
   // {
   //   id: 7,
-  //   title: 'Luxury Jewelry Store',
+  //   title: 'Luxury Jewellery Store',
   //   category: 'Web Development',
   //   // image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
-  //   description: 'Responsive website with virtual try-on features for a jewelry store.'
+  //   description: 'Responsive website with virtual try-on features for a Jewellery store.'
   // },
 
   // {
   //   id: 9,
-  //   title: 'Jewelry Brand Identity',
+  //   title: 'Jewellery Brand Identity',
   //   category: 'Branding',
   //   // image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22',
-  //   description: 'Complete branding package for a new luxury jewelry brand.'
+  //   description: 'Complete branding package for a new luxury Jewellery brand.'
   // },
   // {
   //   id: 10,
@@ -99,15 +99,15 @@ const portfolioItems = [
   // },
   // {
   //   id: 11,
-  //   title: 'Jewelry Lookbook',
+  //   title: 'Jewellery Lookbook',
   //   category: 'Creative Media',
   //   // image: '',
-  //   description: 'Photography and design for a seasonal jewelry lookbook.'
+  //   description: 'Photography and design for a seasonal Jewellery lookbook.'
   // },
   // {
   //   id: 12,
   //   title: 'Engagement Ring Series',
-  //   category: 'Jewelry CAD',
+  //   category: 'Jewellery CAD',
   //   // image: 'https://images.unsplash.com/photo-1466442929976-97f336a657be',
   //   description: 'CAD design for a customizable engagement ring collection.'
   // }
@@ -154,7 +154,7 @@ const Portfolio = () => {
             <div>
               <h1 className="text-4xl md:text-5xl font-playfair mb-6">Our <span className="text-gold">Portfolio</span></h1>
               <p className="text-gray-700 max-w-2xl mb-10">
-                Browse through our collection of projects spanning jewelry design, web development, creative media, and more.
+                Browse through our collection of projects spanning Jewellery design, web development, creative media, and more.
               </p>
 
               {/* Category filters */}
@@ -182,7 +182,7 @@ const Portfolio = () => {
                 </div>
               }>
                 <ThreeCanvas>
-                  {filter === 'Jewelry CAD' ? (
+                  {filter === 'Jewellery CAD' ? (
                     <GoldRing position={[0, 0, 0]} scale={2} rotationSpeed={1} />
                   ) : (
                     <Diamond position={[0, 0, 0]} scale={1.8} rotationSpeed={0.8} />

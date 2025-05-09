@@ -18,10 +18,10 @@ const AboutOverview = () => {
               About <span className="text-gold">Siya Jewels Infotech</span>
             </h2>
             <p className="mb-6 text-gray-700">
-              Founded by Harish Soni, Siya Jewels Infotech combines deep expertise in both the jewelry industry and cutting-edge technology solutions. Our unique dual specialization allows us to offer services that truly understand the specific needs of jewelers while delivering the latest in digital innovation.
+              Founded by Harish Soni, Siya Jewels Infotech combines deep expertise in both the Jewellery industry and cutting-edge technology solutions. Our unique dual specialization allows us to offer services that truly understand the specific needs of jewelers while delivering the latest in digital innovation.
             </p>
             <p className="mb-8 text-gray-700">
-              We bridge the gap between traditional jewelry craftsmanship and modern technology, helping businesses transform and thrive in the digital age.
+              We bridge the gap between traditional Jewellery craftsmanship and modern technology, helping businesses transform and thrive in the digital age.
             </p>
             <Button asChild className="bg-gold hover:bg-gold-dark text-white">
               <Link to="/about">

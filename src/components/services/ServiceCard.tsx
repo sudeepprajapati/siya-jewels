@@ -12,7 +12,7 @@ import { LucideIcon } from 'lucide-react';
 // Map service categories to 3D geometry types
 const geometryMap = {
   'tech': 'cube',
-  'jewelry': 'torus',
+  'Jewellery': 'torus',
   'creative': 'sphere',
   'ai': 'cube',
   'branding': 'cone'
@@ -21,7 +21,7 @@ const geometryMap = {
 // Map service categories to colors
 const colorMap = {
   'tech': '#9b87f5',
-  'jewelry': '#d4af37',
+  'Jewellery': '#d4af37',
   'creative': '#D946EF',
   'ai': '#0EA5E9',
   'branding': '#F97316'

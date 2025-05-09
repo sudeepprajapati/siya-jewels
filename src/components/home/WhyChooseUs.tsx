@@ -5,7 +5,7 @@ import { Check } from 'lucide-react';
 const reasons = [
   {
     title: "Dual Expertise",
-    description: "Unique combination of jewelry industry knowledge and technical prowess"
+    description: "Unique combination of Jewellery industry knowledge and technical prowess"
   },
   {
     title: "Premium Quality",
@@ -31,11 +31,11 @@ const WhyChooseUs = () => {
             We combine artistry with technology to deliver exceptional results
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {reasons.map((reason, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="p-6 rounded-lg border border-gray-200 hover:border-gold/50 transition-colors duration-300 hover:shadow-gold"
             >
               <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-4">

@@ -39,36 +39,36 @@ export const serviceCategories = [
         id: 'billing',
         title: 'Billing Software Development',
         icon: Database,
-        description: 'Custom billing solutions designed specifically for jewelry businesses.',
+        description: 'Custom billing solutions designed specifically for Jewellery businesses.',
         benefits: ['Inventory tracking', 'Sales analytics', 'Invoice generation'],
       }
     ]
   },
   {
-    id: 'jewelry',
-    title: 'Jewelry Solutions',
+    id: 'Jewellery',
+    title: 'Jewellery Solutions',
     color: 'from-gold-light to-gold-dark',
-    description: 'Professional jewelry design and visualization services',
+    description: 'Professional Jewellery design and visualization services',
     services: [
       {
         id: 'cad',
-        title: 'Jewelry CAD Designing',
+        title: 'Jewellery CAD Designing',
         icon: Gem,
-        description: 'Precise computer-aided design for jewelry pieces with attention to detail.',
+        description: 'Precise computer-aided design for Jewellery pieces with attention to detail.',
         benefits: ['Production-ready files', 'Realistic previews', 'Multiple revisions'],
       },
       {
         id: 'rendering',
-        title: '3D Jewelry Rendering',
+        title: '3D Jewellery Rendering',
         icon: Box,
-        description: 'Photorealistic 3D renderings of jewelry for marketing and presentations.',
+        description: 'Photorealistic 3D renderings of Jewellery for marketing and presentations.',
         benefits: ['Studio-quality images', 'Multiple angles', 'Material simulations'],
       },
       {
         id: 'hiphop',
-        title: 'Hip-Hop Cuban Jewelry CAD Design',
+        title: 'Hip-Hop Cuban Jewellery CAD Design',
         icon: Diamond,
-        description: 'Specialized designs for hip-hop and Cuban link style jewelry.',
+        description: 'Specialized designs for hip-hop and Cuban link style Jewellery.',
         benefits: ['Custom engravings', 'Gemstone placements', 'Unique closures'],
       },
       {
@@ -90,14 +90,14 @@ export const serviceCategories = [
         id: 'product-photos',
         title: 'Product Photoshoot',
         icon: Camera,
-        description: 'Professional photography services specialized for jewelry and products.',
+        description: 'Professional photography services specialized for Jewellery and products.',
         benefits: ['360° product views', 'White background options', 'Detail closeups'],
       },
       {
         id: 'model-photos',
         title: 'Model Photoshoot',
         icon: Camera,
-        description: 'Lifestyle photography showcasing jewelry pieces being worn.',
+        description: 'Lifestyle photography showcasing Jewellery pieces being worn.',
         benefits: ['Professional models', 'Style direction', 'Environment selection'],
       },
       {

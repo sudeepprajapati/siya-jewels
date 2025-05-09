@@ -17,9 +17,9 @@ const serviceOptions = [
   'E-commerce Development',
   'Mobile App Development',
   'Billing Software Development',
-  'Jewelry CAD Designing',
-  '3D Jewelry Rendering',
-  'Hip-Hop Cuban Jewelry CAD Design',
+  'Jewellery CAD Designing',
+  '3D Jewellery Rendering',
+  'Hip-Hop Cuban Jewellery CAD Design',
   'Premium 5D Designing',
   'Product Photoshoot',
   'Model Photoshoot',
@@ -343,7 +343,7 @@ const faqs = [
   },
   {
     question: "Do you provide revisions for designs?",
-    answer: "Yes, our packages include a specific number of revision rounds. For jewelry CAD designs, we typically offer 2-3 rounds of revisions to ensure you're completely satisfied with the final result."
+    answer: "Yes, our packages include a specific number of revision rounds. For Jewellery CAD designs, we typically offer 2-3 rounds of revisions to ensure you're completely satisfied with the final result."
   },
   {
     question: "How do we get started with a project?",
@@ -351,7 +351,7 @@ const faqs = [
   },
   {
     question: "Do you offer maintenance services after project completion?",
-    answer: "Yes, we provide ongoing maintenance and support packages for websites, e-commerce platforms, and mobile apps. For jewelry designs, we offer storage and modification services for future production needs."
+    answer: "Yes, we provide ongoing maintenance and support packages for websites, e-commerce platforms, and mobile apps. For Jewellery designs, we offer storage and modification services for future production needs."
   }
 ];
 

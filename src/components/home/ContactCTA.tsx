@@ -14,7 +14,7 @@ const ContactCTA = () => {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-playfair text-3xl md:text-4xl mb-4">Ready to Elevate Your Business?</h2>
           <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
-            Whether you need jewelry design or tech solutions, we're here to help transform your vision into reality.
+            Whether you need Jewellery design or tech solutions, we're here to help transform your vision into reality.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">

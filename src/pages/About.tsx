@@ -35,10 +35,10 @@ const About = () => {
                   The Origin Story of <span className="text-gold">Siya Jewels Infotech</span>
                 </h2>
                 <p className="text-gray-700 mb-6">
-                  Founded on the vision of bridging traditional jewelry craftsmanship with cutting-edge technology, Siya Jewels Infotech represents a unique fusion of expertise rarely found in today's specialized market.
+                  Founded on the vision of bridging traditional Jewellery craftsmanship with cutting-edge technology, Siya Jewels Infotech represents a unique fusion of expertise rarely found in today's specialized market.
                 </p>
                 <p className="text-gray-700 mb-6">
-                  Our journey began when Harish Soni, with his deep knowledge of the jewelry industry, recognized the growing need for technological solutions specifically tailored for jewelers. Rather than forcing generic tech solutions onto jewelry businesses, we built an agency that truly understands both worlds.
+                  Our journey began when Harish Soni, with his deep knowledge of the Jewellery industry, recognized the growing need for technological solutions specifically tailored for jewelers. Rather than forcing generic tech solutions onto Jewellery businesses, we built an agency that truly understands both worlds.
                 </p>
                 <div className="flex flex-wrap gap-8 mb-6">
                   <div className="flex items-center gap-2">
@@ -106,13 +106,13 @@ const About = () => {
                 </h2>
                 <h3 className="text-xl font-playfair text-purple-dark mb-4">Harish Soni</h3>
                 <p className="text-gray-700 mb-6">
-                  Harish Soni's journey represents a unique evolution from being a skilled jeweler to becoming a tech innovator. With deep roots in the jewelry industry, Harish recognized the specific technological needs of jewelers that weren't being met by generic solutions.
+                  Harish Soni's journey represents a unique evolution from being a skilled jeweler to becoming a tech innovator. With deep roots in the Jewellery industry, Harish recognized the specific technological needs of jewelers that weren't being met by generic solutions.
                 </p>
                 <p className="text-gray-700 mb-6">
-                  Combining his jewelry expertise with a passion for technology, he established Siya Jewels Infotech to create bespoke digital solutions that truly understand the unique requirements of the jewelry business while also serving broader business needs.
+                  Combining his Jewellery expertise with a passion for technology, he established Siya Jewels Infotech to create bespoke digital solutions that truly understand the unique requirements of the Jewellery business while also serving broader business needs.
                 </p>
                 <p className="text-gray-700 mb-6">
-                  Today, Harish leads a team that bridges the gap between traditional jewelry craftsmanship and cutting-edge technology, helping businesses transform their operations and thrive in the digital age.
+                  Today, Harish leads a team that bridges the gap between traditional Jewellery craftsmanship and cutting-edge technology, helping businesses transform their operations and thrive in the digital age.
                 </p>
               </div>
             </div>
@@ -156,7 +156,7 @@ const About = () => {
           <div className="container text-center">
             <h2 className="text-3xl md:text-4xl font-playfair mb-6">Ready to Work With Us?</h2>
             <p className="text-gray-300 max-w-2xl mx-auto mb-8">
-              Experience the difference of working with a team that understands both the jewelry industry and cutting-edge technology.
+              Experience the difference of working with a team that understands both the Jewellery industry and cutting-edge technology.
             </p>
             <Button asChild className="bg-gold hover:bg-gold-dark text-white">
               <a href="/contact">
@@ -175,12 +175,12 @@ const testimonials = [
   {
     name: "Rajesh Mehta",
     position: "Owner, Mehta Jewellers",
-    text: "Siya Jewels Infotech transformed our business with their CAD designs and website. Their understanding of both jewelry and technology is truly unique."
+    text: "Siya Jewels Infotech transformed our business with their CAD designs and website. Their understanding of both Jewellery and technology is truly unique."
   },
   {
     name: "Priya Shah",
     position: "Marketing Director, Gold Emporium",
-    text: "The team's expertise in both jewelry and technology made the development process incredibly smooth. Our e-commerce site has boosted sales by 45%."
+    text: "The team's expertise in both Jewellery and technology made the development process incredibly smooth. Our e-commerce site has boosted sales by 45%."
   },
   {
     name: "Vikram Singh",

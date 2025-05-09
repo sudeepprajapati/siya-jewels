@@ -25,17 +25,17 @@ const HeroSection = () => {
       <div className="absolute inset-0 opacity-10 bg-[linear-gradient(45deg,#9b87f5_25%,transparent_25%,transparent_50%,#9b87f5_50%,#9b87f5_75%,transparent_75%,transparent)] bg-[length:24px_24px]"></div>
 
       {/* Content container */}
-      <div className="container relative z-10 py-24 flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 mt-12 md:mt-0">
+      <div className="container relative z-10 py-24 flex justify-center flex-col md:flex-row items-center">
+        <div className="md:w-4/5 mt-12 md:mt-0 flex flex-col items-center text-center justify-center">
           <h1
             className={`font-playfair text-4xl md:text-5xl lg:text-6xl text-white mb-4 opacity-0 ${isLoaded ? 'animate-fade-in [animation-delay:0.2s]' : ''}`}
           >
-            Transforming <span className="text-gold">Jewelry</span> & <span className="text-gold">Technology</span>
+            Transforming <span className="text-gold">Jewellery</span> & <span className="text-gold">Technology</span>
           </h1>
           <p
             className={`text-gray-300 mb-6 max-w-lg opacity-0 ${isLoaded ? 'animate-fade-in [animation-delay:0.4s]' : ''}`}
           >
-            Siya Jewels Infotech blends the art of premium jewelry design with cutting-edge technology solutions. We create bespoke experiences for jewelers and businesses.
+            Siya Jewels Infotech blends the art of premium Jewellery design with cutting-edge technology solutions. We create bespoke experiences for jewelers and businesses.
           </p>
           <div className={`flex flex-wrap gap-4 opacity-0 ${isLoaded ? 'animate-fade-in [animation-delay:0.6s]' : ''}`}>
             <Button asChild className="bg-gold hover:bg-gold-dark text-white">
@@ -50,7 +50,7 @@ const HeroSection = () => {
             </Button>
           </div>
         </div>
-        <div className={`md:w-1/2 mt-12  md:mt-0 opacity-0 ${isLoaded ? 'animate-fade-in [animation-delay:0.8s]' : ''}`}>
+        <div className={`md:w-1/2 mt-12 hidden  md:mt-0 opacity-0 ${isLoaded ? 'animate-fade-in [animation-delay:0.8s]' : ''}`}>
           <div className="relative h-[500px] w-full max-w-[500px] mx-auto">
             <div className="w-full h-full flex items-center justify-center">
               <div className="absolute inset-0 bg-gold rounded-full opacity-20 animate-pulse"></div>

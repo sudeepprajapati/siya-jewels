@@ -20,7 +20,7 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({
 }) => {
   // Determine which 3D element to show based on active category
   const get3DElement = () => {
-    if (activeCategory === 'jewelry') {
+    if (activeCategory === 'Jewellery') {
       return <GoldRing position={[0, 0, 0]} scale={1.8} rotationSpeed={1} />;
     }
     return <Diamond3D position={[0, 0, 0]} scale={1.5} rotationSpeed={0.8} />;
@@ -32,7 +32,7 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({
         <div>
           <h1 className="text-4xl md:text-5xl font-playfair mb-6">Our <span className="text-gold">Services</span></h1>
           <p className="text-gray-700 max-w-2xl mb-10">
-            From jewelry design to cutting-edge technology solutions, we offer a wide range of premium services designed to elevate your business.
+            From Jewellery design to cutting-edge technology solutions, we offer a wide range of premium services designed to elevate your business.
           </p>
 
           {/* Category tabs */}

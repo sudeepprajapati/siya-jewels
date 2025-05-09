@@ -13,7 +13,7 @@ const Footer = () => {
           <div className='flex flex-col items-start'>
             <Logo className="h-16 w-auto mb-4 " />
             <p className="text-gray-300 mb-4">
-              Premium jewelry and technology solutions for modern businesses.
+              Premium Jewellery and technology solutions for modern businesses.
             </p>
             <div className="flex space-x-3">
               <a
@@ -58,7 +58,7 @@ const Footer = () => {
           <div>
             <h4 className="font-playfair text-gold text-xl mb-4">Services</h4>
             <ul className="space-y-3">
-              {['Tech Development', 'Jewelry Solutions', 'Creative & Media', 'AI Automation', 'Branding & Legal'].map((item) => (
+              {['Tech Development', 'Jewellery Solutions', 'Creative & Media', 'AI Automation', 'Branding & Legal'].map((item) => (
                 <li key={item}>
                   <Link
                     to={`/services#${item.toLowerCase().replace(/\s+/g, '-')}`}
