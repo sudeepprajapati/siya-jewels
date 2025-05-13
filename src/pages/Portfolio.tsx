@@ -9,6 +9,8 @@ import { cn } from '@/lib/utils';
 import ThreeCanvas from '../components/3d/ThreeCanvas';
 import GoldRing from '../components/3d/GoldRing';
 import Diamond from '../components/3d/Diamond';
+import PortfolioCard from '@/components/Portfolio/PortfolioCard';
+import AboutHeader from '@/components/About/AboutHeader';
 
 // Animation Variants
 const fadeUp = {
@@ -122,83 +124,24 @@ const Portfolio = () => {
   return (
     <>
       <Navbar />
-      <motion.main ref={headerRef} initial="hidden" animate={headerControls} variants={fadeUp} className="pt-24">
+      <main className="pt-24">
         {/* Header */}
         <section className="container py-12 pb-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <motion.div variants={fadeLeft(0.2)}>
-              <h1 className="text-4xl md:text-5xl font-playfair mb-6">
-                Our <span className="text-gold">Portfolio</span>
-              </h1>
-              <motion.p variants={fadeLeft(0.25)} className="text-gray-700 max-w-2xl mb-10">
-                Browse through our collection of projects spanning Jewellery design, web development, creative media, and more.
-              </motion.p>
-              <motion.div className="flex flex-wrap gap-2 md:gap-4 mb-12" variants={fadeLeft(0.3)}>
-                {portfolioCategories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setFilter(category)}
-                    className={cn(
-                      "px-4 py-2 rounded-full text-sm md:text-base transition-colors",
-                      filter === category
-                        ? "bg-gold text-white"
-                        : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                    )}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            {/* 3D Element */}
-            <div className="hidden md:block h-[300px]">
-              <Suspense fallback={
-                <div className="h-full flex items-center justify-center">
-                  <div className="w-16 h-16 border-4 border-t-gold border-b-gold rounded-full animate-spin"></div>
-                </div>
-              }>
-                <ThreeCanvas>
-                  {filter === 'Jewellery CAD' ? (
-                    <GoldRing position={[0, 0, 0]} scale={2} rotationSpeed={1} />
-                  ) : (
-                    <Diamond position={[0, 0, 0]} scale={1.8} rotationSpeed={0.8} />
-                  )}
-                </ThreeCanvas>
-              </Suspense>
-            </div>
-          </div>
+          <AboutHeader
+            portfolioCategories={portfolioCategories}
+            filter={filter}
+            setFilter={setFilter}
+          />
         </section>
 
         {/* Portfolio Grid */}
-        <motion.section ref={gridRef} animate={gridControls} variants={fadeUp} className="container py-8">
+        <section className="container py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map((item, index) => (
-              <motion.div
-                key={item.id}
-                className="group relative cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-gold transition-all duration-500 transform"
-                animate="visible"
-                variants={fadeUp}
-                onClick={() => openItemDetails(item)}
-              >
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-dark/90 via-purple-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span className="inline-block px-3 py-1 bg-gold/80 text-white text-xs rounded-full mb-2">
-                    {item.category}
-                  </span>
-                  <h3 className="text-white text-xl font-playfair mb-2">{item.title}</h3>
-                  <p className="text-white/80 text-sm">{item.description}</p>
-                </div>
-              </motion.div>
+              <PortfolioCard item={item} onClick={openItemDetails} />
             ))}
           </div>
-        </motion.section>
+        </section>
 
         {/* CTA Section */}
         <motion.section ref={ctaRef} initial="hidden" animate={ctaControls} className="py-16 bg-purple-light/10 mt-16">
@@ -218,7 +161,7 @@ const Portfolio = () => {
             </motion.div>
           </div>
         </motion.section>
-      </motion.main>
+      </main>
 
       {/* Modal */}
       {selectedItem && (
