@@ -1,23 +1,65 @@
-
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ContactCTA = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
   return (
-    <section className="py-20 bg-gray-900 text-white relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMzAgMzAgbDMwIC0zMCBMMzAgMzAgbC0zMCAtMzAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjA1Ii8+Cjwvc3ZnPg==')] opacity-30"></div>
+    <motion.section
+      ref={sectionRef}
+      className="py-20 bg-gray-900 text-white relative overflow-hidden"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6 }}
+    >
+      {/* Background decorative element */}
+      <motion.div
+        className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMzAgMzAgbDMwIC0zMCBMMzAgMzAgbC0zMCAtMzAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjA1Ii8+Cjwvc3ZnPg==')] opacity-30"
+        initial={{ opacity: 0 }}
+        animate={isVisible ? { opacity: 0.3 } : {}}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      />
 
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
+        <motion.div
+          className="max-w-3xl mx-auto text-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           <h2 className="font-playfair text-3xl md:text-4xl mb-4">Ready to Elevate Your Business?</h2>
           <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
             Whether you need Jewellery design or tech solutions, we're here to help transform your vision into reality.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+          <motion.div
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-12"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
             <a
               href="tel:9293432432"
               className="flex items-center justify-center gap-2 px-6 py-3 bg-gold/20 hover:bg-gold/30 rounded-md transition-colors duration-300"
@@ -32,16 +74,22 @@ const ContactCTA = () => {
               <Mail size={20} className="text-gold" />
               <span>siyajewels@gmail.com</span>
             </a>
-          </div>
+          </motion.div>
 
-          <Button asChild size="lg" className="bg-gold hover:bg-gold-dark text-white">
-            <Link to="/contact">
-              Get in Touch <ArrowRight size={16} className="ml-2" />
-            </Link>
-          </Button>
-        </div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          >
+            <Button asChild size="lg" className="bg-gold hover:bg-gold-dark text-white">
+              <Link to="/contact">
+                Get in Touch <ArrowRight size={16} className="ml-2" />
+              </Link>
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

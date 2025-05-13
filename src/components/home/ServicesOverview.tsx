@@ -1,10 +1,10 @@
-
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Code, Watch, PenTool, Bot, Briefcase } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 const serviceCategories = [
   {
@@ -15,7 +15,7 @@ const serviceCategories = [
     description: 'Websites, E-commerce platforms, and Mobile apps development for modern businesses.'
   },
   {
-    id: 'Jewellery',
+    id: 'jewellery',
     title: 'Jewellery',
     icon: Watch,
     gradient: 'from-gold-light to-gold-dark',
@@ -45,8 +45,39 @@ const serviceCategories = [
 ];
 
 const ServicesOverview = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Stop observing after the first intersection
+        }
+      },
+      { threshold: 0.1 } // Trigger when 10% of the section is visible
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="py-20 px-4 sm:px-6 bg-white">
+    <motion.section
+      ref={sectionRef}
+      className="py-20 px-4 sm:px-6 bg-white"
+      initial={{ opacity: 0, y: 20 }} // Initial state
+      animate={isVisible ? { opacity: 1, y: 0 } : {}} // Animate to this state when visible
+      transition={{ duration: 0.5 }} // Duration of the animation
+    >
       <div className="container">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <h2 className="text-gold font-playfair text-3xl md:text-4xl mb-4">Our Expertise</h2>
@@ -57,7 +88,13 @@ const ServicesOverview = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {serviceCategories.map((category, index) => (
-            <div key={category.id} className="group" data-aos="fade-up" data-aos-delay={index * 100}>
+            <motion.div
+              key={category.id}
+              className="group"
+              initial={{ opacity: 0, y: 20 }} // Initial state for each card
+              animate={isVisible ? { opacity: 1, y: 0 } : {}} // Animate to this state when visible
+              transition={{ duration: 0.3, delay: isVisible ? index * 0.1 : 0 }} // Duration and delay for staggered effect
+            >
               <Card className="luxury-card h-full transition-all hover:-translate-y-1 duration-300 overflow-hidden border-0 bg-white">
                 <CardHeader className={cn(`bg-gradient-to-r ${category.gradient} p-6`)}>
                   <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-4">
@@ -77,19 +114,25 @@ const ServicesOverview = () => {
                   </Link>
                 </CardFooter>
               </Card>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         <div className="text-center">
-          <Button asChild className="bg-gold hover:bg-gold-dark text-white">
-            <Link to="/services">
-              View All Services <ArrowRight size={16} className="ml-2" />
-            </Link>
-          </Button>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} // Initial state for the button
+            animate={isVisible ? { opacity: 1, y: 0 } : {}} // Animate to this state when visible
+            transition={{ duration: 0.5, delay: isVisible ? serviceCategories.length * 0.1 : 0 }} // Delay to appear after cards
+          >
+            <Button asChild className="bg-gold hover:bg-gold-dark text-white">
+              <Link to="/services">
+                View All Services <ArrowRight size={16} className="ml-2" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

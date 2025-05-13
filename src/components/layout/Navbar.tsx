@@ -98,9 +98,9 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <Button className="bg-gold hover:bg-gold-dark text-white w-full mt-2">
+          {/* <Button className="bg-gold hover:bg-gold-dark text-white w-full mt-2">
             Get in Touch
-          </Button>
+          </Button> */}
         </div>
       )}
     </nav>

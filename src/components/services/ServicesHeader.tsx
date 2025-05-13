@@ -1,11 +1,10 @@
 
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense } from 'react';
 import { cn } from '@/lib/utils';
 
-// Lazy load 3D components for better performance
-const ThreeCanvas = lazy(() => import('../3d/ThreeCanvas'));
-const GoldRing = lazy(() => import('../3d/GoldRing'));
-const Diamond3D = lazy(() => import('../3d/Diamond'));
+import ThreeCanvas from '../3d/ThreeCanvas';
+import GoldRing from '../3d/GoldRing';
+import Diamond3D from '../3d/Diamond';
 
 interface ServicesHeaderProps {
   activeCategory: string;
@@ -72,7 +71,7 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({
               <div className="w-16 h-16 border-4 border-t-gold border-b-gold rounded-full animate-spin"></div>
             </div>
           }>
-            <ThreeCanvas height="300px">
+            <ThreeCanvas >
               {get3DElement()}
             </ThreeCanvas>
           </Suspense>
