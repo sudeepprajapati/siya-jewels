@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import ExpertiseCard from './ExpertiseCard';
 
 const serviceCategories = [
   {
@@ -88,33 +89,13 @@ const ServicesOverview = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {serviceCategories.map((category, index) => (
-            <motion.div
-              key={category.id}
-              className="group"
-              initial={{ opacity: 0, y: 20 }} // Initial state for each card
-              animate={isVisible ? { opacity: 1, y: 0 } : {}} // Animate to this state when visible
-              transition={{ duration: 0.3, delay: isVisible ? index * 0.1 : 0 }} // Duration and delay for staggered effect
-            >
-              <Card className="luxury-card h-full transition-all hover:-translate-y-1 duration-300 overflow-hidden border-0 bg-white">
-                <CardHeader className={cn(`bg-gradient-to-r ${category.gradient} p-6`)}>
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-4">
-                    <category.icon className="text-white h-8 w-8" />
-                  </div>
-                  <CardTitle className="text-white text-xl font-playfair">{category.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <p className="text-gray-600">{category.description}</p>
-                </CardContent>
-                <CardFooter>
-                  <Link
-                    to={`/services#${category.id}`}
-                    className="text-gold hover:text-gold-dark flex items-center font-medium"
-                  >
-                    Learn More <ArrowRight size={16} className="ml-1" />
-                  </Link>
-                </CardFooter>
-              </Card>
-            </motion.div>
+            <ExpertiseCard
+              id={category.id}
+              title={category.title}
+              icon={category.icon}
+              description={category.description}
+              gradient={category.gradient}
+            />
           ))}
         </div>
 

@@ -1,5 +1,6 @@
+'use client';
 
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useRef, useState, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import { Input } from '@/components/ui/input';
@@ -7,10 +8,10 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Phone, Mail, Send, MapPin, Instagram } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { motion, useAnimation, useInView } from 'framer-motion';
 
-// Lazy load 3D components
-const ThreeCanvas = lazy(() => import('../components/3d/ThreeCanvas'));
-const Diamond = lazy(() => import('../components/3d/Diamond'));
+import ThreeCanvas from '../components/3d/ThreeCanvas';
+import Diamond from '../components/3d/Diamond';
 
 const serviceOptions = [
   'Website Development',
@@ -35,55 +36,84 @@ const serviceOptions = [
   'Other / Custom Inquiry'
 ];
 
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
+const fadeLeft = (delay: number = 0) => ({
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay } },
+});
+
+const fadeRight = (delay: number = 0) => ({
+  hidden: { opacity: 0, x: 20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, delay } },
+});
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
 const Contact = () => {
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  useEffect(() => {
+    if (isInView) controls.start('visible');
+  }, [controls, isInView]);
+
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     service: '',
-    message: ''
+    message: '',
   });
 
   const [formStatus, setFormStatus] = useState({
     submitted: false,
     success: false,
-    message: ''
+    message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Here you would normally send the form data to your backend
-    // For now, we'll simulate a successful submission with a delay
     setTimeout(() => {
       setFormStatus({
         submitted: true,
         success: true,
-        message: 'Thank you for your message! We will get back to you soon.'
+        message: 'Thank you for your message! We will get back to you soon.',
       });
 
       toast({
-        title: "Message Sent!",
+        title: 'Message Sent!',
         description: "We'll get back to you as soon as possible.",
         duration: 5000,
       });
 
-      // Reset form after submission
       setFormData({
         name: '',
         email: '',
         phone: '',
         service: '',
-        message: ''
+        message: '',
       });
 
       setIsSubmitting(false);
@@ -103,35 +133,54 @@ const Contact = () => {
     <>
       <Navbar />
       <main className="pt-24 pb-16">
-        {/* Header Section with 3D Element */}
-        <section className="container py-12 pb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-playfair mb-6">Contact <span className="text-gold">Us</span></h1>
+        {/* Header Section */}
+        <section ref={ref} className="container py-12 pb-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={controls}
+          >
+            <motion.div variants={fadeLeft(0.2)}>
+              <h1 className="text-4xl md:text-5xl font-playfair mb-6">
+                Contact <span className="text-gold">Us</span>
+              </h1>
               <p className="text-gray-700 max-w-2xl mb-10">
                 Get in touch with us to discuss your project requirements or inquire about our services. We're here to help bring your vision to life.
               </p>
-            </div>
-            <div className="hidden md:block h-[200px]">
-              <Suspense fallback={
-                <div className="h-full flex items-center justify-center">
-                  <div className="w-16 h-16 border-4 border-t-gold border-b-gold rounded-full animate-spin"></div>
-                </div>
-              }>
-                <ThreeCanvas >
+            </motion.div>
+
+            <motion.div className="hidden md:block h-[200px]" variants={fadeUpVariant}>
+              <Suspense
+                fallback={
+                  <div className="h-full flex items-center justify-center">
+                    <div className="w-16 h-16 border-4 border-t-gold border-b-gold rounded-full animate-spin"></div>
+                  </div>
+                }
+              >
+                <ThreeCanvas>
                   <Diamond position={[0, 0, 0]} scale={1.5} rotationSpeed={0.8} />
                 </ThreeCanvas>
               </Suspense>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </section>
 
-        {/* Contact Details & Form */}
+        {/* Contact Form and Info */}
         <section className="py-12 bg-purple-light/5">
-          <div className="container">
+          <motion.div
+            className="container"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
-              <div className="bg-white p-8 rounded-lg shadow-md transform transition-all duration-500 hover:shadow-gold">
+              <motion.div
+                className="bg-white p-8 rounded-lg shadow-md transform transition-all duration-500 hover:shadow-gold"
+                variants={fadeLeft(0.2)}
+              >
                 <h2 className="text-2xl font-playfair mb-6">Send Us a Message</h2>
 
                 {formStatus.submitted && (
@@ -151,7 +200,6 @@ const Contact = () => {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="border-gray-300 focus:border-gold focus:ring-gold"
                       />
                     </div>
                     <div className="space-y-2">
@@ -164,7 +212,6 @@ const Contact = () => {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="border-gray-300 focus:border-gold focus:ring-gold"
                       />
                     </div>
                   </div>
@@ -178,7 +225,6 @@ const Contact = () => {
                         placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="border-gray-300 focus:border-gold focus:ring-gold"
                       />
                     </div>
                     <div className="space-y-2">
@@ -186,13 +232,15 @@ const Contact = () => {
                       <select
                         id="service"
                         name="service"
-                        className="w-full h-10 rounded-md border border-gray-300 bg-background px-3 py-2 text-base md:text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="w-full h-10 rounded-md border border-gray-300 bg-background px-3 py-2"
                         value={formData.service}
                         onChange={handleChange}
                       >
                         <option value="">Select a service</option>
                         {serviceOptions.map((option) => (
-                          <option key={option} value={option}>{option}</option>
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -204,7 +252,7 @@ const Contact = () => {
                       id="message"
                       name="message"
                       rows={6}
-                      className="w-full rounded-md border border-gray-300 bg-background px-3 py-2 text-base md:text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="w-full rounded-md border border-gray-300 px-3 py-2"
                       placeholder="Tell us about your project or inquiry..."
                       required
                       value={formData.message}
@@ -229,102 +277,101 @@ const Contact = () => {
                     )}
                   </Button>
                 </form>
-              </div>
+              </motion.div>
 
-              {/* Contact Information */}
-              <div>
+              {/* Contact Info */}
+              <motion.div variants={fadeRight(0.2)}>
                 <h2 className="text-2xl font-playfair mt-2 mb-6">Get In Touch</h2>
 
                 <div className="space-y-6">
-                  <div className="flex items-start group">
-                    <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 group-hover:bg-gold/30 transition-colors">
-                      <Phone className="h-5 w-5 text-gold" />
+                  {[
+                    {
+                      icon: <Phone className="h-5 w-5 text-gold" />,
+                      title: 'Phone/WhatsApp',
+                      text: '+91 9293432432',
+                      href: 'tel:9293432432',
+                      note: 'Available Mon-Sat, 10 AM - 7 PM',
+                    },
+                    {
+                      icon: <Mail className="h-5 w-5 text-gold" />,
+                      title: 'Email',
+                      text: 'siyajewels@gmail.com',
+                      href: 'mailto:siyajewels@gmail.com',
+                      note: 'We respond within 24 hours',
+                    },
+                    {
+                      icon: <Instagram className="h-5 w-5 text-gold" />,
+                      title: 'Instagram',
+                      text: '@official_harishsoni',
+                      href: 'https://instagram.com/official_harishsoni',
+                      note: 'Follow us for latest updates',
+                    },
+                    {
+                      icon: <MapPin className="h-5 w-5 text-gold" />,
+                      title: 'Office Location',
+                      text: 'Mumbai, Maharashtra, India',
+                      note: 'Meetings by appointment only',
+                    },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start group">
+                      <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 group-hover:bg-gold/30 transition-colors">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-lg">{item.title}</h3>
+                        {item.href ? (
+                          <a href={item.href} className="text-gray-700 hover:text-gold transition-colors">
+                            {item.text}
+                          </a>
+                        ) : (
+                          <p className="text-gray-700">{item.text}</p>
+                        )}
+                        <p className="text-gray-500 text-sm mt-1">{item.note}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-medium text-lg">Phone/WhatsApp</h3>
-                      <a href="tel:9293432432" className="text-gray-700 hover:text-gold transition-colors">
-                        +91 9293432432
-                      </a>
-                      <p className="text-gray-500 text-sm mt-1">Available Mon-Sat, 10 AM - 7 PM</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start group">
-                    <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 group-hover:bg-gold/30 transition-colors">
-                      <Mail className="h-5 w-5 text-gold" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-lg">Email</h3>
-                      <a href="mailto:siyajewels@gmail.com" className="text-gray-700 hover:text-gold transition-colors">
-                        siyajewels@gmail.com
-                      </a>
-                      <p className="text-gray-500 text-sm mt-1">We respond within 24 hours</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start group">
-                    <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 group-hover:bg-gold/30 transition-colors">
-                      <Instagram className="h-5 w-5 text-gold" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-lg">Instagram</h3>
-                      <a
-                        href="https://instagram.com/official_harishsoni"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-700 hover:text-gold transition-colors"
-                      >
-                        @official_harishsoni
-                      </a>
-                      <p className="text-gray-500 text-sm mt-1">Follow us for latest updates</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start group">
-                    <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 group-hover:bg-gold/30 transition-colors">
-                      <MapPin className="h-5 w-5 text-gold" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-lg">Office Location</h3>
-                      <p className="text-gray-700">
-                        Mumbai, Maharashtra, India
-                      </p>
-                      <p className="text-gray-500 text-sm mt-1">Meetings by appointment only</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
 
                 <div className="mt-10">
                   <Button onClick={openWhatsApp} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 h-5 w-5 group-hover:animate-bounce">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="mr-2 h-5 w-5 group-hover:animate-bounce" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
                       <path d="M9 10a0.5.0.5 0 0 0 1 0V9a0.5.0.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a0.5.0.5 0 0 0 0-1h-1a0.5.0.5 0 0 0 0 1"></path>
                     </svg>
                     Chat on WhatsApp
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* FAQ Section */}
         <section className="py-16 bg-white">
-          <div className="container">
-            <h2 className="text-3xl font-playfair text-center mb-12">Frequently Asked Questions</h2>
+          <motion.div
+            className="container"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.h2 className="text-3xl font-playfair text-center mb-12" variants={fadeUpVariant}>
+              Frequently Asked Questions
+            </motion.h2>
 
             <div className="max-w-3xl mx-auto space-y-6">
               {faqs.map((faq, index) => (
-                <div
+                <motion.div
                   key={index}
                   className="border-b border-gray-200 pb-5 transition-all duration-300 hover:border-gold"
+                  variants={fadeUpVariant}
                 >
                   <h3 className="font-playfair font-medium text-lg mb-2">{faq.question}</h3>
                   <p className="text-gray-700">{faq.answer}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
       </main>
       <Footer />
@@ -334,25 +381,25 @@ const Contact = () => {
 
 const faqs = [
   {
-    question: "What areas do you serve?",
-    answer: "While we're based in Mumbai, we work with clients globally. Most of our services can be delivered remotely, and for local clients, we can arrange in-person meetings when needed."
+    question: 'What areas do you serve?',
+    answer: 'While we\'re based in Mumbai, we work with clients globally...',
   },
   {
-    question: "How long does it take to complete a project?",
-    answer: "Project timelines vary based on the scope and complexity. A simple website might take 2-3 weeks, while a complex e-commerce platform or custom CAD design collection could take 4-8 weeks. We'll provide you with a detailed timeline during our initial consultation."
+    question: 'How long does it take to complete a project?',
+    answer: 'Project timelines vary based on the scope and complexity...',
   },
   {
-    question: "Do you provide revisions for designs?",
-    answer: "Yes, our packages include a specific number of revision rounds. For Jewellery CAD designs, we typically offer 2-3 rounds of revisions to ensure you're completely satisfied with the final result."
+    question: 'Do you provide revisions for designs?',
+    answer: 'Yes, our packages include a specific number of revision rounds...',
   },
   {
-    question: "How do we get started with a project?",
-    answer: "The process begins with a consultation to understand your requirements. After that, we'll provide a proposal with scope, timeline, and pricing. Once approved, we'll begin the project with regular updates and feedback sessions throughout the development process."
+    question: 'How do we get started with a project?',
+    answer: 'The process begins with a consultation to understand your requirements...',
   },
   {
-    question: "Do you offer maintenance services after project completion?",
-    answer: "Yes, we provide ongoing maintenance and support packages for websites, e-commerce platforms, and mobile apps. For Jewellery designs, we offer storage and modification services for future production needs."
-  }
+    question: 'Do you offer maintenance services after project completion?',
+    answer: 'Yes, we provide ongoing maintenance and support packages...',
+  },
 ];
 
 export default Contact;

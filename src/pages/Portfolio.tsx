@@ -1,21 +1,32 @@
-
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useRef, useState, Suspense } from 'react';
+import { motion, useInView, useAnimation } from 'framer-motion';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Lazy load 3D components
-// const ThreeCanvas = lazy(() => import('../components/3d/ThreeCanvas'));
-// const GoldRing = lazy(() => import('../components/3d/GoldRing'));
-// const Diamond = lazy(() => import('../components/3d/Diamond'));
-
 import ThreeCanvas from '../components/3d/ThreeCanvas';
 import GoldRing from '../components/3d/GoldRing';
 import Diamond from '../components/3d/Diamond';
 
-// Portfolio data
+// Animation Variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
+const fadeLeft = (delay: number = 0) => ({
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay } },
+});
+
+const fadeRight = (delay: number = 0) => ({
+  hidden: { opacity: 0, x: 20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, delay } },
+});
+
+// Data
 const portfolioCategories = [
   'All',
   'Jewellery CAD',
@@ -40,13 +51,6 @@ const portfolioItems = [
     image: '/e-commerce.webp',
     description: 'Custom e-commerce platform for a high-end Jewellery retailer.'
   },
-  // {
-  //   id: 3,
-  //   title: 'Jewel Finder Mobile App',
-  //   category: 'Mobile Apps',
-  //   // image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158',
-  //   description: 'iOS and Android app for a Jewellery marketplace.'
-  // },
   {
     id: 3,
     title: 'Luxury Watch Campaign',
@@ -74,64 +78,35 @@ const portfolioItems = [
     category: 'Jewellery CAD',
     image: '/earings.webp',
     description: '3D rendering of an exclusive gold earrings collection.'
-  },
-  // {
-  //   id: 7,
-  //   title: 'Luxury Jewellery Store',
-  //   category: 'Web Development',
-  //   // image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
-  //   description: 'Responsive website with virtual try-on features for a Jewellery store.'
-  // },
-
-  // {
-  //   id: 9,
-  //   title: 'Jewellery Brand Identity',
-  //   category: 'Branding',
-  //   // image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22',
-  //   description: 'Complete branding package for a new luxury Jewellery brand.'
-  // },
-  // {
-  //   id: 10,
-  //   title: 'Diamond Catalog App',
-  //   category: 'Mobile Apps',
-  //   // image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
-  //   description: 'Mobile application for browsing and purchasing diamonds.'
-  // },
-  // {
-  //   id: 11,
-  //   title: 'Jewellery Lookbook',
-  //   category: 'Creative Media',
-  //   // image: '',
-  //   description: 'Photography and design for a seasonal Jewellery lookbook.'
-  // },
-  // {
-  //   id: 12,
-  //   title: 'Engagement Ring Series',
-  //   category: 'Jewellery CAD',
-  //   // image: 'https://images.unsplash.com/photo-1466442929976-97f336a657be',
-  //   description: 'CAD design for a customizable engagement ring collection.'
-  // }
+  }
 ];
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('All');
   const [filteredItems, setFilteredItems] = useState(portfolioItems);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [loaded, setLoaded] = useState(false);
+
+  // Section Refs and Animations
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+  const ctaRef = useRef(null);
+
+  const headerInView = useInView(headerRef, { once: true, amount: 0.2 });
+  const gridInView = useInView(gridRef, { once: true, amount: 0.2 });
+  const ctaInView = useInView(ctaRef, { once: true, amount: 0.2 });
+
+  const headerControls = useAnimation();
+  const gridControls = useAnimation();
+  const ctaControls = useAnimation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (headerInView) headerControls.start('visible');
+    if (gridInView) gridControls.start('visible');
+    if (ctaInView) ctaControls.start('visible');
+  }, [headerInView, gridInView, ctaInView]);
 
-    // Delayed loading state for smooth animations
-    setTimeout(() => {
-      setLoaded(true);
-    }, 100);
-
-    if (filter === 'All') {
-      setFilteredItems(portfolioItems);
-    } else {
-      setFilteredItems(portfolioItems.filter(item => item.category === filter));
-    }
+  useEffect(() => {
+    setFilteredItems(filter === 'All' ? portfolioItems : portfolioItems.filter(item => item.category === filter));
   }, [filter]);
 
   const openItemDetails = (item) => {
@@ -147,18 +122,18 @@ const Portfolio = () => {
   return (
     <>
       <Navbar />
-      <main className="pt-24 ">
-        {/* Header Section with 3D Animation */}
+      <motion.main ref={headerRef} initial="hidden" animate={headerControls} variants={fadeUp} className="pt-24">
+        {/* Header */}
         <section className="container py-12 pb-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-playfair mb-6">Our <span className="text-gold">Portfolio</span></h1>
-              <p className="text-gray-700 max-w-2xl mb-10">
+            <motion.div variants={fadeLeft(0.2)}>
+              <h1 className="text-4xl md:text-5xl font-playfair mb-6">
+                Our <span className="text-gold">Portfolio</span>
+              </h1>
+              <motion.p variants={fadeLeft(0.25)} className="text-gray-700 max-w-2xl mb-10">
                 Browse through our collection of projects spanning Jewellery design, web development, creative media, and more.
-              </p>
-
-              {/* Category filters */}
-              <div className="flex flex-wrap gap-2 md:gap-4 mb-12">
+              </motion.p>
+              <motion.div className="flex flex-wrap gap-2 md:gap-4 mb-12" variants={fadeLeft(0.3)}>
                 {portfolioCategories.map((category) => (
                   <button
                     key={category}
@@ -173,8 +148,10 @@ const Portfolio = () => {
                     {category}
                   </button>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
+
+            {/* 3D Element */}
             <div className="hidden md:block h-[300px]">
               <Suspense fallback={
                 <div className="h-full flex items-center justify-center">
@@ -194,24 +171,20 @@ const Portfolio = () => {
         </section>
 
         {/* Portfolio Grid */}
-        <section className="container py-8">
+        <motion.section ref={gridRef} animate={gridControls} variants={fadeUp} className="container py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map((item, index) => (
-              <div
+              <motion.div
                 key={item.id}
-                className={cn(
-                  "group relative cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-gold transition-all duration-500 transform",
-                  loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-                  // Stagger the animation
-                  `transition-all duration-500 delay-[${index * 100}ms]`
-                )}
+                className="group relative cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-gold transition-all duration-500 transform"
+                animate="visible"
+                variants={fadeUp}
                 onClick={() => openItemDetails(item)}
               >
                 <div className="aspect-square overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
-                    // loading="lazy" // Improve performance with lazy loading
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
@@ -222,38 +195,32 @@ const Portfolio = () => {
                   <h3 className="text-white text-xl font-playfair mb-2">{item.title}</h3>
                   <p className="text-white/80 text-sm">{item.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-
-          {filteredItems.length === 0 && (
-            <div className="text-center py-12">
-              <h3 className="text-2xl font-playfair mb-4">No projects found</h3>
-              <p className="text-gray-600 mb-6">We don't have any projects in this category yet.</p>
-              <Button onClick={() => setFilter('All')} className="bg-gold hover:bg-gold-dark text-white">
-                View All Projects
-              </Button>
-            </div>
-          )}
-        </section>
+        </motion.section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-purple-light/10 mt-16">
+        <motion.section ref={ctaRef} initial="hidden" animate={ctaControls} className="py-16 bg-purple-light/10 mt-16">
           <div className="container text-center">
-            <h2 className="text-3xl font-playfair mb-6">Like What You See?</h2>
-            <p className="text-gray-700 max-w-2xl mx-auto mb-8">
+            <motion.h2 variants={fadeRight(0.2)} className="text-3xl font-playfair mb-6">
+              Like What You See?
+            </motion.h2>
+            <motion.p variants={fadeLeft(0.3)} className="text-gray-700 max-w-2xl mx-auto mb-8">
               Let's discuss how we can create something amazing for your business. Our team is ready to bring your vision to life.
-            </p>
-            <Button asChild className="bg-gold hover:bg-gold-dark text-white">
-              <a href="/contact">
-                Start Your Project <ArrowRight size={16} className="ml-2" />
-              </a>
-            </Button>
+            </motion.p>
+            <motion.div variants={fadeUp}>
+              <Button asChild className="bg-gold hover:bg-gold-dark text-white">
+                <a href="/contact">
+                  Start Your Project <ArrowRight size={16} className="ml-2" />
+                </a>
+              </Button>
+            </motion.div>
           </div>
-        </section>
-      </main>
+        </motion.section>
+      </motion.main>
 
-      {/* Portfolio Item Detail Modal with 3D Element */}
+      {/* Modal */}
       {selectedItem && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
@@ -268,20 +235,18 @@ const Portfolio = () => {
               <button
                 onClick={closeItemDetails}
                 className="absolute top-4 right-4 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-colors"
-                aria-label="Close details"
               >
                 <X size={24} />
               </button>
             </div>
             <div className="p-6">
-              <div className="mb-4 ">
-                <p className=" px-3 py-1 bg-gold/20 text-gold text-xs rounded-full mb-2">
+              <div className="mb-4">
+                <p className="px-3 py-1 bg-gold/20 text-gold text-xs rounded-full mb-2">
                   {selectedItem.category}
                 </p>
                 <h2 className="text-2xl font-playfair">{selectedItem.title}</h2>
               </div>
               <p className="text-gray-700 mb-6">{selectedItem.description}</p>
-
               <div className="border-t border-gray-200 pt-6 mt-6">
                 <h3 className="font-medium mb-4">Project Details</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -303,15 +268,12 @@ const Portfolio = () => {
                   </div>
                 </div>
               </div>
-
               <div className="flex justify-end mt-6">
                 <Button variant="outline" onClick={closeItemDetails} className="mr-2">
                   Close
                 </Button>
                 <Button asChild className="bg-gold hover:bg-gold-dark text-white">
-                  <a href="/contact">
-                    Request Similar
-                  </a>
+                  <a href="/contact">Request Similar</a>
                 </Button>
               </div>
             </div>
