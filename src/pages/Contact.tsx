@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Phone, Mail, Send, MapPin, Instagram } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
@@ -12,6 +10,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 
 import ThreeCanvas from '../components/3d/ThreeCanvas';
 import Diamond from '../components/3d/Diamond';
+import ContactForm from '@/components/Contact/ContactForm';
 
 const serviceOptions = [
   'Website Development',
@@ -177,110 +176,10 @@ const Contact = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
-              <motion.div
-                className="bg-white p-8 rounded-lg shadow-md transform transition-all duration-500 hover:shadow-gold"
-                variants={fadeLeft(0.2)}
-              >
-                <h2 className="text-2xl font-playfair mb-6">Send Us a Message</h2>
 
-                {formStatus.submitted && (
-                  <div className={`p-4 mb-6 rounded-md ${formStatus.success ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'} animate-fade-in`}>
-                    {formStatus.message}
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Your Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="John Doe"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="john@example.com"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        placeholder="+91 98765 43210"
-                        value={formData.phone}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="service">Service Interested In</Label>
-                      <select
-                        id="service"
-                        name="service"
-                        className="w-full h-10 rounded-md border border-gray-300 bg-background px-3 py-2"
-                        value={formData.service}
-                        onChange={handleChange}
-                      >
-                        <option value="">Select a service</option>
-                        {serviceOptions.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Your Message</Label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={6}
-                      className="w-full rounded-md border border-gray-300 px-3 py-2"
-                      placeholder="Tell us about your project or inquiry..."
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                    ></textarea>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-gold hover:bg-gold-dark text-white"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" /> Send Message
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </motion.div>
-
+              <ContactForm serviceOptions={serviceOptions} />
               {/* Contact Info */}
-              <motion.div variants={fadeRight(0.2)}>
+              <motion.div variants={fadeRight(0.2)} className='flex flex-col justify-center'>
                 <h2 className="text-2xl font-playfair mt-2 mb-6">Get In Touch</h2>
 
                 <div className="space-y-6">
