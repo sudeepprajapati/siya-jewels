@@ -84,7 +84,7 @@ const AboutOverview = () => {
           >
             <div className="w-full h-80 bg-purple-dark rounded-lg relative overflow-hidden shadow-gold">
               {/* Placeholder for founder image */}
-              <img src="/founder.webp" alt="" className='w-screen' />
+              <img src="/assets/images/Owner.webp" alt="" className='h-[350px] md:h-[495px] object-cover w-screen' />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6 text-white">
                 <h3 className="font-playfair text-2xl mb-1">Harish Soni</h3>

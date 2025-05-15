@@ -140,7 +140,7 @@ const About = () => {
               >
                 <div className="absolute top-0 left-0 w-40 h-40 bg-gold/20 rounded-full -translate-x-20 -translate-y-20 z-0"></div>
                 <div className="rounded-lg overflow-hidden shadow-lg relative sm:h-[300px] md:h-[400px] z-10">
-                  <img src="/founder.webp" className="h-fit" alt="Harish Soni" />
+                  <img src="/assets/images/Owner.webp" alt="Founder Harish Soni" className='h-[350px] md:h-[495px] object-cover w-screen' />
                 </div>
               </motion.div>
               <motion.div
@@ -227,7 +227,7 @@ const About = () => {
             </Button>
           </div>
         </motion.section>
-      </main>
+      </main >
       <Footer />
     </>
   );
