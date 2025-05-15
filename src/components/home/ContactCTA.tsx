@@ -61,18 +61,18 @@ const ContactCTA = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <a
-              href="tel:9293432432"
+              href="tel:8652429808"
               className="flex items-center justify-center gap-2 px-6 py-3 bg-gold/20 hover:bg-gold/30 rounded-md transition-colors duration-300"
             >
               <Phone size={20} className="text-gold" />
-              <span>+91 9293432432</span>
+              <span>+91 8652429808</span>
             </a>
             <a
-              href="mailto:siyajewels@gmail.com"
+              href="mailto:siyajewels04@gmail.com"
               className="flex items-center justify-center gap-2 px-6 py-3 bg-gold/20 hover:bg-gold/30 rounded-md transition-colors duration-300"
             >
               <Mail size={20} className="text-gold" />
-              <span>siyajewels@gmail.com</span>
+              <span>siyajewels04@gmail.com</span>
             </a>
           </motion.div>
 

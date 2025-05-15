@@ -121,7 +121,7 @@ const Contact = () => {
 
   const openWhatsApp = () => {
     const message = encodeURIComponent("Hello, I'm interested in your services!");
-    window.open(`https://wa.me/9293432432?text=${message}`, '_blank');
+    window.open(`https://wa.me/8652429808?text=${message}`, '_blank');
   };
 
   useEffect(() => {
@@ -187,15 +187,15 @@ const Contact = () => {
                     {
                       icon: <Phone className="h-5 w-5 text-gold" />,
                       title: 'Phone/WhatsApp',
-                      text: '+91 9293432432',
-                      href: 'tel:9293432432',
+                      text: '+91 8652429808',
+                      href: 'tel:8652429808',
                       note: 'Available Mon-Sat, 10 AM - 7 PM',
                     },
                     {
                       icon: <Mail className="h-5 w-5 text-gold" />,
                       title: 'Email',
-                      text: 'siyajewels@gmail.com',
-                      href: 'mailto:siyajewels@gmail.com',
+                      text: 'siyajewels04@gmail.com',
+                      href: 'mailto:siyajewels04@gmail.com',
                       note: 'We respond within 24 hours',
                     },
                     {
