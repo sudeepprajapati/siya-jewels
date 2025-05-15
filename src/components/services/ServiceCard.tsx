@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useRef, useEffect } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -14,6 +12,7 @@ interface ServiceCardProps {
   benefits: string[];
   categoryId: string;
   categoryColor: string;
+  onLearnMore?: () => void;
 }
 
 const fadeUp = {
@@ -28,6 +27,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   benefits,
   categoryId,
   categoryColor,
+  onLearnMore,
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
@@ -47,9 +47,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       animate={controls}
     >
       <Card className="luxury-card border-0 overflow-hidden h-full transform transition-all duration-500 hover:-translate-y-1 hover:shadow-gold">
-        <CardHeader
-          className={cn('bg-gradient-to-r p-6', categoryColor)}
-        >
+        <CardHeader className={cn('bg-gradient-to-r p-6', categoryColor)}>
           <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-4 relative">
             <Icon className="text-white h-8 w-8 relative z-10" />
           </div>
@@ -72,9 +70,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <Button
             asChild
             variant="outline"
-            className="w-full border-gold text-gold hover:bg-gold/10"
+            onClick={onLearnMore}
+            className="w-full border-gold text-gold hover:bg-gold/10 cursor-pointer"
           >
-            <a href="/contact">Learn More</a>
+            <p>Learn More</p>
           </Button>
         </CardContent>
       </Card>
