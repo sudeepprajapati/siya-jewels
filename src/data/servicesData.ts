@@ -19,7 +19,7 @@ export const serviceCategories = [
         id: 'website',
         title: 'Website Development',
         icon: Globe,
-        media: ['public/assets/images/webdev.jpg'],
+        media: ['/assets/images/webdev.jpg'],
         description: 'Custom-designed, responsive websites optimized for both performance and aesthetics.',
         benefits: ['SEO-friendly architecture', 'Mobile-optimized design', 'Content management system'],
       },
@@ -27,7 +27,7 @@ export const serviceCategories = [
         id: 'ecommerce',
         title: 'E-commerce Development',
         icon: ShoppingCart,
-        media: ['public/assets/images/webdev2.webp'],
+        media: ['/assets/images/webdev2.webp'],
         description: 'Full-featured online stores with secure payment gateways and inventory management.',
         benefits: ['Secure payment processing', 'Product catalog management', 'Customer account features'],
       },
@@ -35,7 +35,7 @@ export const serviceCategories = [
         id: 'mobile',
         title: 'Mobile App Development',
         icon: Smartphone,
-        media: ['public/assets/images/app-dev.jpg'],
+        media: ['/assets/images/app-dev.jpg'],
         description: 'Native and cross-platform applications for iOS and Android devices.',
         benefits: ['Intuitive user interface', 'Cross-platform compatibility', 'Push notification features'],
       },
@@ -44,8 +44,8 @@ export const serviceCategories = [
         title: 'Billing Software Development',
         icon: Database,
         media: [
-          'public/assets/images/bill-dev1.jpg',
-          // 'public/assets/images/bill-dev2.jpg'
+          '/assets/images/bill-dev1.jpg',
+          // '/assets/images/bill-dev2.jpg'
         ],
         description: 'Custom billing solutions designed specifically for Jewellery businesses.',
         benefits: ['Inventory tracking', 'Sales analytics', 'Invoice generation'],
@@ -62,9 +62,9 @@ export const serviceCategories = [
         id: 'cad',
         title: 'Jewellery CAD Designing',
         icon: Gem,
-        media: ['public/assets/images/jewellary-cad01.jpg',
-          'public/assets/images/jewellary-cad02.jpg', 'public/assets/images/jewellary-cad03.jpg',
-          'public/assets/images/jewellary-cad04.jpg'
+        media: ['/assets/images/jewellary-cad01.jpg',
+          '/assets/images/jewellary-cad02.jpg', '/assets/images/jewellary-cad03.jpg',
+          '/assets/images/jewellary-cad04.jpg'
         ],
         description: 'Precise computer-aided design for Jewellery pieces with attention to detail.',
         benefits: ['Production-ready files', 'Realistic previews', 'Multiple revisions'],
