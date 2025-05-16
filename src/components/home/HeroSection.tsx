@@ -37,10 +37,10 @@ const HeroSection = () => {
           >
             Siya Jewels Infotech blends the art of premium Jewellery design with cutting-edge technology solutions. We create bespoke experiences for jewelers and businesses.
           </p>
-          <div className={`flex flex-wrap gap-4 opacity-0 ${isLoaded ? 'animate-fade-in [animation-delay:0.6s]' : ''}`}>
-            <Button asChild className="bg-gold hover:bg-gold-dark text-white">
+          <div className={`flex justify-center gap-4 opacity-0 ${isLoaded ? 'animate-fade-in [animation-delay:0.6s]' : ''}`}>
+            <Button asChild className=" bg-gold hover:bg-gold-dark text-white">
               <Link to="/about">
-                Discover Our Story <ArrowRight size={16} className="ml-2" />
+                Discover Our Story <ArrowRight size={16} className="ml-0" />
               </Link>
             </Button>
             <Button asChild variant="outline" className="border-black/20 hover:text-purple-dark hover:bg-white/10">

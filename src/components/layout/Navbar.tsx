@@ -75,13 +75,19 @@ const Navbar = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="md:hidden "
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? (
-            <X className={cn((isScrolled || route !== '/') ? 'text-purple-dark' : 'text-white')} />
+            <X
+              className="text-purple-dark"
+            // className={cn((isScrolled || route !== '/') ? 'text-purple-dark' : 'text-white')}
+            />
           ) : (
-            <Menu className={cn((isScrolled || route !== '/') ? 'text-purple-dark' : 'text-white')} />
+            <Menu
+              className="text-purple-dark "
+            // className={cn((isScrolled || route !== '/') ? 'text-purple-dark' : 'text-white')}
+            />
           )}
         </Button>
       </div>
