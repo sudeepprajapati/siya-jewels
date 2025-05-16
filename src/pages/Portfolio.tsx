@@ -31,56 +31,56 @@ const fadeRight = (delay: number = 0) => ({
 // Data
 const portfolioCategories = [
   'All',
-  'Jewellery CAD',
+  // 'Jewellery CAD',
   'Web Development',
   'Mobile Apps',
-  'Creative Media',
-  'Branding'
+  // 'Creative Media',
+  // 'Branding'
 ];
 
 const portfolioItems = [
-  {
-    id: 1,
-    title: 'Diamond Ring Collection',
-    category: 'Jewellery CAD',
-    image: '/diamond.webp',
-    description: 'CAD design and rendering for a premium diamond ring collection.'
-  },
+  // {
+  //   id: 1,
+  //   title: 'Diamond Ring Collection',
+  //   category: 'Jewellery CAD',
+  //   image: '/diamond.webp',
+  //   description: 'CAD design and rendering for a premium diamond ring collection.'
+  // },
   {
     id: 2,
     title: 'Gold Emporium E-commerce',
     category: 'Web Development',
-    image: '/e-commerce.webp',
+    image: '/assets/images/webdev2.webp',
     description: 'Custom e-commerce platform for a high-end Jewellery retailer.'
   },
-  {
-    id: 3,
-    title: 'Luxury Watch Campaign',
-    category: 'Creative Media',
-    image: '/watch.webp',
-    description: 'Photography and video production for a luxury watch launch.'
-  },
-  {
-    id: 4,
-    title: 'Diamond Traders Logo',
-    category: 'Branding',
-    image: '/diamondlogo.webp',
-    description: 'Complete brand identity for an international diamond trading company.'
-  },
-  {
-    id: 5,
-    title: 'Gemstone Pendant Series',
-    category: 'Jewellery CAD',
-    image: '/pandant.webp',
-    description: 'Detailed CAD designs for a series of gemstone pendants.'
-  },
-  {
-    id: 6,
-    title: 'Gold Earrings Collection',
-    category: 'Jewellery CAD',
-    image: '/earings.webp',
-    description: '3D rendering of an exclusive gold earrings collection.'
-  }
+  // {
+  //   id: 3,
+  //   title: 'Luxury Watch Campaign',
+  //   category: 'Creative Media',
+  //   image: '/watch.webp',
+  //   description: 'Photography and video production for a luxury watch launch.'
+  // },
+  // {
+  //   id: 4,
+  //   title: 'Diamond Traders Logo',
+  //   category: 'Branding',
+  //   image: '/diamondlogo.webp',
+  //   description: 'Complete brand identity for an international diamond trading company.'
+  // },
+  // {
+  //   id: 5,
+  //   title: 'Gemstone Pendant Series',
+  //   category: 'Jewellery CAD',
+  //   image: '/pandant.webp',
+  //   description: 'Detailed CAD designs for a series of gemstone pendants.'
+  // },
+  // {
+  //   id: 6,
+  //   title: 'Gold Earrings Collection',
+  //   category: 'Jewellery CAD',
+  //   image: '/earings.webp',
+  //   description: '3D rendering of an exclusive gold earrings collection.'
+  // }
 ];
 
 const Portfolio = () => {
@@ -136,7 +136,7 @@ const Portfolio = () => {
 
         {/* Portfolio Grid */}
         <section className="container py-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className=" h-72 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
             {filteredItems.map((item, index) => (
               <PortfolioCard item={item} onClick={openItemDetails} />
             ))}
@@ -166,14 +166,16 @@ const Portfolio = () => {
       {/* Modal */}
       {selectedItem && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="relative">
-              <div className="w-full h-64 md:h-80">
-                <img
-                  src={selectedItem.image}
-                  alt={selectedItem.title}
-                  className="w-full h-full object-cover"
-                />
+          <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="relative overflow-hidden">
+              <div className="w-full flex p-0 justify-center items-center ">
+                <a href="https://www.amazon.in" className='cursor-pointer'>
+                  <img
+                    src={selectedItem.image}
+                    alt={selectedItem.title}
+                    className="w-full object-cover"
+                  />
+                </a>
               </div>
               <button
                 onClick={closeItemDetails}

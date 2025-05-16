@@ -39,10 +39,10 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, onClick }) => {
             variants={fadeUp}
             initial="hidden"
             animate={controls}
-            className="group relative cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-gold transition-all duration-500 transform"
+            className=" group relative cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-gold transition-all duration-500 transform"
             onClick={() => onClick(item)}
         >
-            <div className="aspect-square overflow-hidden">
+            <div className="overflow-hidden">
                 <img
                     src={item.image}
                     alt={item.title}

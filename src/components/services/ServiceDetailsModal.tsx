@@ -23,7 +23,7 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
             <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
                 <div className="relative">
-                    <div className="  overflow-hidden">
+                    <div className=" overflow-hidden">
                         {Array.isArray(item.media) && item.media.length > 0 ? (
                             <div
                                 className={cn(
