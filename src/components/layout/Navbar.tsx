@@ -40,7 +40,6 @@ const Navbar = () => {
       <div className="container flex justify-between items-center">
         <Link to="/" className="flex -mt-3 items-center">
           <Logo
-            // className=" "
             className={cn(
               'h-12 w-auto',
               isScrolled
@@ -48,6 +47,7 @@ const Navbar = () => {
                 : 'text-gold'
             )}
           />
+          {/* <img src="/siyajewels-logo.png" alt="" className='h-16' /> */}
         </Link>
 
         {/* Desktop Navigation */}

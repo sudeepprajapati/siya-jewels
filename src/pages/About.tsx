@@ -6,6 +6,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Award, Users, Gem } from 'lucide-react';
+import Logo from '@/components/ui/Logo';
 
 const testimonials = [
   {
@@ -86,7 +87,7 @@ const About = () => {
           animate={introInView ? "visible" : "hidden"}
         >
           <div className="container">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid  grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeLeft(0.2)}>
                 <h2 className="text-3xl font-playfair mb-6">
                   The Origin Story of <span className="text-gold">Siya Jewels Infotech</span>
@@ -113,9 +114,9 @@ const About = () => {
                 </div>
               </motion.div>
               <motion.div variants={fadeRight(0.2)}
-                className="relative">
+                className="relative bg-white bg-opacity-60">
                 <div className="rounded-lg overflow-hidden shadow-gold h-[400px] flex items-center justify-center relative">
-                  <img src="/sjlogo.png" alt="" />
+                  <img src="/siyajewels-logo.jpg" className='w-96' alt="Siya Jewels Logo" />
                 </div>
               </motion.div>
             </div>
