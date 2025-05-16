@@ -7,12 +7,12 @@ import Logo from '../ui/Logo';
 
 const Footer = () => {
   return (
-    <footer className="bg-purple-dark text-white pt-16 pb-6">
+    <footer className="bg-white text-black pt-16 pb-6">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div className='flex flex-col items-start'>
             <Logo className="h-16 w-auto mb-4 " />
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-700 mb-4">
               Premium Jewellery and technology solutions for modern businesses.
             </p>
             <div className="flex space-x-3">
@@ -46,7 +46,7 @@ const Footer = () => {
                 <li key={item}>
                   <Link
                     to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                    className="text-gray-300 hover:text-gold transition-colors duration-300"
+                    className="text-gray-700 hover:text-gold transition-colors duration-300"
                   >
                     {item}
                   </Link>
@@ -62,7 +62,7 @@ const Footer = () => {
                 <li key={item}>
                   <Link
                     to={`/services#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-gray-300 hover:text-gold transition-colors duration-300"
+                    className="text-gray-700 hover:text-gold transition-colors duration-300"
                   >
                     {item}
                   </Link>
@@ -76,13 +76,13 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center">
                 <Phone size={18} className="text-gold mr-2 flex-shrink-0" />
-                <a href="tel:8652429808" className="text-gray-300 hover:text-gold">
+                <a href="tel:8652429808" className="text-gray-700 hover:text-gold">
                   +91 8652429808
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-gold mr-2 flex-shrink-0" />
-                <a href="mailto:siyajewels04@gmail.com" className="text-gray-300 hover:text-gold">
+                <a href="mailto:siyajewels04@gmail.com" className="text-gray-700 hover:text-gold">
                   siyajewels04@gmail.com
                 </a>
               </li>
@@ -97,8 +97,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 pt-6">
-          <div className="text-center text-gray-400 text-sm">
+        <div className="border-t border-gray-300 pt-6">
+          <div className="text-center text-gray-800 text-sm">
             &copy; {new Date().getFullYear()} Siya Jewels Infotech. All rights reserved.
           </div>
         </div>

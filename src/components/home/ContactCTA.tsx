@@ -29,7 +29,7 @@ const ContactCTA = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="py-20 bg-gray-900 text-white relative overflow-hidden"
+      className="py-20 bg-neutral-50 text-black relative overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
@@ -50,7 +50,7 @@ const ContactCTA = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <h2 className="font-playfair text-3xl md:text-4xl mb-4">Ready to Elevate Your Business?</h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
+          <p className="text-lg text-gray-700 mb-8 max-w-xl mx-auto">
             Whether you need Jewellery design or tech solutions, we're here to help transform your vision into reality.
           </p>
 

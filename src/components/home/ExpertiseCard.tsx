@@ -13,7 +13,7 @@ interface ExpertiseCardProps {
     title: string;
     icon: LucideIcon;
     description: string;
-    // gradient: string; // e.g., 'from-purple-500 to-pink-500'
+    gradient: string; // e.g., 'from-purple-500 to-pink-500'
 }
 
 const fadeUp = {
@@ -21,7 +21,7 @@ const fadeUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-const ExpertiseCard: React.FC<ExpertiseCardProps> = ({ id, title, icon: Icon, description }) => {
+const ExpertiseCard: React.FC<ExpertiseCardProps> = ({ id, title, icon: Icon, description, gradient }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.15 });
     const controls = useAnimation();
@@ -41,7 +41,7 @@ const ExpertiseCard: React.FC<ExpertiseCardProps> = ({ id, title, icon: Icon, de
             className="group"
         >
             <Card className="luxury-card h-full transition-all hover:-translate-y-1 duration-300 overflow-hidden border-0 bg-white">
-                <CardHeader className={cn(`bg-gradient-to-r bg-purple-light/10 p-6`)}>
+                <CardHeader className={cn(`bg-gradient-to-r p-6`, gradient)}>
                     <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-4">
                         <Icon className="text-purple-dark h-8 w-8" />
                     </div>

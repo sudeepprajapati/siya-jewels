@@ -116,7 +116,7 @@ const About = () => {
               <motion.div variants={fadeRight(0.2)}
                 className="relative bg-white bg-opacity-60">
                 <div className="rounded-lg overflow-hidden shadow-gold h-[400px] flex items-center justify-center relative">
-                  <img src="/siyajewels-logo.jpg" className='w-96' alt="Siya Jewels Infotech Logo" />
+                  <img src="/siyajewels-logo.jpg" className='w-screen' alt="Siya Jewels Infotech Logo" />
                 </div>
               </motion.div>
             </div>
@@ -211,14 +211,14 @@ const About = () => {
         {/* CTA */}
         <motion.section
           ref={ctaRef}
-          className="py-16 bg-gray-800 text-white"
+          className="py-16 bg-gray-50 text-black"
           variants={fadeUp}
           initial="hidden"
           animate={ctaInView ? "visible" : "hidden"}
         >
           <div className="container text-center">
             <motion.h2 variants={fadeLeft(0.2)} className="text-3xl md:text-4xl font-playfair mb-6">Ready to Work With Us?</motion.h2>
-            <motion.p variants={fadeRight(0.2)} className="text-gray-300 max-w-2xl mx-auto mb-8">
+            <motion.p variants={fadeRight(0.2)} className="text-gray-700 max-w-2xl mx-auto mb-8">
               Experience the difference of working with a team that understands both the Jewellery industry and cutting-edge technology.
             </motion.p>
             <Button asChild className="bg-gold hover:bg-gold-dark text-white">
