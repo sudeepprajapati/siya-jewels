@@ -115,8 +115,8 @@ const About = () => {
               </motion.div>
               <motion.div variants={fadeRight(0.2)}
                 className="relative bg-white bg-opacity-60">
-                <div className="rounded-lg overflow-hidden shadow-gold h-[400px] flex items-center justify-center relative">
-                  <img src="/siyajewels-logo.jpg" className='w-screen' alt="Siya Jewels Infotech Logo" />
+                <div className="rounded-lg overflow-hidden shadow-gold h-[350px] md:h-[400px] flex items-center justify-center relative">
+                  <img src="/siyajewels-logo.jpg" className='w-full md:w-screen h-full md:h-auto xl:h-[600px] 2xl:h-[560px]' alt="Siya Jewels Infotech Logo" />
                 </div>
               </motion.div>
             </div>
