@@ -13,8 +13,8 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
           <span className="text-xs -mt-1">S</span>
           <span className="text-xs mt-1">J</span>
         </div> */}
-        <img src="/siyajewels-logo.png" alt="" className='h-14' />
-        <div className="text-sm font-playfair font-semibold -mt-2">Siya Jewels Infotech</div>
+        <img src="/siyajewels-logo.png" alt="" className='h-12' />
+        <div className="text-sm text-gold-dark font-playfair font-semibold mt-0">SJ Infotech</div>
       </div>
     </div>
   );
