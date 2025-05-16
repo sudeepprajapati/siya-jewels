@@ -1,4 +1,4 @@
-# 💎 Siya Jewels - Premium Portfolio Website
+# 💎 Siya Jewels Infotech - Premium Portfolio Website
 
 A luxurious, performance-optimized, and animated portfolio site for **Siya Jewels Infotech**, built with cutting-edge frontend technologies, featuring 3D visuals and dynamic service showcases for the Jewellery and business automation industry.
 

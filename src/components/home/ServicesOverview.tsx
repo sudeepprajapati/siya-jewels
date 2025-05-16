@@ -10,35 +10,35 @@ const serviceCategories = [
     id: 'tech',
     title: 'Tech',
     icon: Code,
-    gradient: 'from-blue-500 to-purple-500',
+    // gradient: 'from-blue-300 to-purple-300',
     description: 'Websites, E-commerce platforms, and Mobile apps development for modern businesses.'
   },
   {
     id: 'jewellery',
     title: 'Jewellery',
     icon: Watch,
-    gradient: 'from-gold-light to-gold-dark',
+    // gradient: 'from-gold-light to-gold-dark',
     description: 'Expert CAD designing, 3D rendering, and premium Jewellery design solutions.'
   },
   {
     id: 'creative',
     title: 'Creative',
     icon: PenTool,
-    gradient: 'from-pink-500 to-purple-500',
+    // gradient: 'from-pink-300 to-purple-300',
     description: 'Professional photography, animated videos and social media marketing assets.'
   },
   {
     id: 'ai',
     title: 'AI',
     icon: Bot,
-    gradient: 'from-cyan-500 to-blue-500',
+    // gradient: 'from-cyan-300 to-blue-300',
     description: 'Smart chatbots, WhatsApp automation, and AI-powered business solutions.'
   },
   {
     id: 'branding',
     title: 'Branding',
     icon: Briefcase,
-    gradient: 'from-amber-500 to-red-500',
+    // gradient: 'from-amber-300 to-red-300',
     description: 'Logo design and trademark registration assistance for your business identity.'
   }
 ];
@@ -92,7 +92,7 @@ const ServicesOverview = () => {
               title={category.title}
               icon={category.icon}
               description={category.description}
-              gradient={category.gradient}
+            // gradient={category.gradient}
             />
           ))}
         </div>

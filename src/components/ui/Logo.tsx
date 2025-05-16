@@ -14,7 +14,7 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
           <span className="text-xs mt-1">J</span>
         </div> */}
         <img src="/siyajewels-logo.png" alt="" className='h-14' />
-        <div className="text-sm font-playfair font-semibold -mt-2">Siya Jewels</div>
+        <div className="text-sm font-playfair font-semibold -mt-2">Siya Jewels Infotech</div>
       </div>
     </div>
   );

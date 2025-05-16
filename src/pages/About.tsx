@@ -116,7 +116,7 @@ const About = () => {
               <motion.div variants={fadeRight(0.2)}
                 className="relative bg-white bg-opacity-60">
                 <div className="rounded-lg overflow-hidden shadow-gold h-[400px] flex items-center justify-center relative">
-                  <img src="/siyajewels-logo.jpg" className='w-96' alt="Siya Jewels Logo" />
+                  <img src="/siyajewels-logo.jpg" className='w-96' alt="Siya Jewels Infotech Logo" />
                 </div>
               </motion.div>
             </div>
