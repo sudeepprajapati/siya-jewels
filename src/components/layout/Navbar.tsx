@@ -56,11 +56,12 @@ const Navbar = () => {
             <Link
               key={item.name}
               to={item.path}
-              className={cn(
-                'text-sm font-medium relative animated-border px-2 py-1',
-                (isScrolled || route !== '/') ? 'text-purple-dark' : 'text-white',
-                'hover:text-gold transition-colors duration-300'
-              )}
+              className='text-sm font-medium relative animated-border px-2 py-1 text-black hover:text-gold-dark transition-colors duration-300'
+            // className={cn(
+            //   'text-sm font-medium relative animated-border px-2 py-1',
+            //   (isScrolled || route !== '/') ? 'text-purple-dark' : 'text-white',
+            //   'hover:text-gold transition-colors duration-300'
+            // )}
             >
               {item.name}
             </Link>
