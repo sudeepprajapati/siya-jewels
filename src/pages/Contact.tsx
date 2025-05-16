@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import { Button } from '@/components/ui/button';
-import { Phone, Mail, Send, MapPin, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, MessageCircle } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { motion, useAnimation, useInView } from 'framer-motion';
 
@@ -233,10 +233,7 @@ const Contact = () => {
 
                 <div className="mt-10">
                   <Button onClick={openWhatsApp} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="mr-2 h-5 w-5 group-hover:animate-bounce" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
-                      <path d="M9 10a0.5.0.5 0 0 0 1 0V9a0.5.0.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a0.5.0.5 0 0 0 0-1h-1a0.5.0.5 0 0 0 0 1"></path>
-                    </svg>
+                    <MessageCircle className=" h-4 w-4" />
                     Chat on WhatsApp
                   </Button>
                 </div>
