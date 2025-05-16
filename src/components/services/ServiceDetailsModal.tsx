@@ -23,14 +23,20 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
             <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
                 <div className="relative">
-                    <div className="w-full h-60 sm:h-64 md:h-80 lg:h-[22rem] overflow-hidden">
+                    <div className="  overflow-hidden">
                         {Array.isArray(item.media) && item.media.length > 0 ? (
                             <div
                                 className={cn(
-                                    'gap-3',
+                                    ' gap-1 p-1 items-center  w-full h-full',
                                     item.media.length === 1
-                                        ? 'flex justify-center items-center h-full'
-                                        : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full'
+                                        ? 'flex p-0 justify-center items-center h-[22rem]'
+                                        : item.media.length === 2 ?
+                                            'grid grid-cols-1 sm:grid-cols-2 '
+                                            : item.media.length === 3
+                                                ? 'grid grid-cols-1 sm:grid-cols-3'
+                                                : item.media.length === 4
+                                                    ? 'grid grid-cols-1 sm:grid-cols-4 '
+                                                    : 'grid grid-cols-1 sm:grid-cols-5 '
                                 )}
                             >
                                 {item.media.map((src, idx) =>
@@ -51,7 +57,7 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
                                             key={idx}
                                             src={src}
                                             alt={`${item.title} ${idx + 1}`}
-                                            className="w-full h-60 sm:h-64 md:h-72 object-cover rounded-lg"
+                                            className={"w-full object-cover rounded-lg"}
                                         />
                                     ) : null
                                 )}
@@ -89,7 +95,7 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
