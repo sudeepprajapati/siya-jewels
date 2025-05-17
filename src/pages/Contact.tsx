@@ -1,39 +1,46 @@
 'use client';
 
-import { useEffect, useRef, useState, Suspense } from 'react';
+import { useEffect, useRef, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Phone, Mail, MapPin, Instagram, MessageCircle } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
 import { motion, useAnimation, useInView } from 'framer-motion';
 
 import ThreeCanvas from '../components/3d/ThreeCanvas';
 import Diamond from '../components/3d/Diamond';
 import ContactForm from '@/components/Contact/ContactForm';
+import { faqs, serviceOptions } from '@/data/contactData';
 
-const serviceOptions = [
-  'Website Development',
-  'E-commerce Development',
-  'Mobile App Development',
-  'Billing Software Development',
-  'Jewellery CAD Designing',
-  '3D Jewellery Rendering',
-  'Hip-Hop Cuban Jewellery CAD Design',
-  'Premium 5D Designing',
-  'Product Photoshoot',
-  'Model Photoshoot',
-  'Creative Animated Videos',
-  'Social Media Posters & Marketing',
-  'Advertisement Video Creation',
-  'AI Chatbots & WhatsApp Automation',
-  'AI-Powered Social Media Automation',
-  'AI Email & Call Automation',
-  'AI Sales & Operations Automation',
-  'Logo Pre-Design',
-  'Trademark Club Registration Assistance',
-  'Other / Custom Inquiry'
-];
+const contactInfo = [
+  {
+    icon: <Phone className="h-5 w-5 text-gold" />,
+    title: 'Phone/WhatsApp',
+    text: ['+91 8652429808'],
+    href: 'tel:8652429808',
+    note: 'Available Mon-Sat, 10 AM - 7 PM',
+  },
+  {
+    icon: <Mail className="h-5 w-5 text-gold" />,
+    title: 'Email',
+    text: ['siyajewels04@gmail.com'],
+    href: 'mailto:siyajewels04@gmail.com',
+    note: 'We respond within 24 hours',
+  },
+  {
+    icon: <Instagram className="h-5 w-5 text-gold" />,
+    title: 'Instagram',
+    text: ['@official_harishsoni'],
+    href: 'https://instagram.com/official_harishsoni',
+    note: 'Follow us for latest updates',
+  },
+  {
+    icon: <MapPin className="h-5 w-5 text-gold" />,
+    title: 'Office Location',
+    text: ['Head Office: Mumbai, Maharashtra, India', 'Branch Office: Surat, Ahemdabad, Banglore, Ujjain, India'],
+    note: 'Meetings by appointment only',
+  },
+]
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -68,65 +75,27 @@ const Contact = () => {
     if (isInView) controls.start('visible');
   }, [controls, isInView]);
 
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-  });
-
-  const [formStatus, setFormStatus] = useState({
-    submitted: false,
-    success: false,
-    message: '',
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setFormStatus({
-        submitted: true,
-        success: true,
-        message: 'Thank you for your message! We will get back to you soon.',
-      });
-
-      toast({
-        title: 'Message Sent!',
-        description: "We'll get back to you as soon as possible.",
-        duration: 5000,
-      });
-
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: '',
-      });
-
-      setIsSubmitting(false);
-    }, 1500);
-  };
-
   const openWhatsApp = () => {
     const message = encodeURIComponent("Hello, I'm interested in your services!");
     window.open(`https://wa.me/8652429808?text=${message}`, '_blank');
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  function renderTextWithOptionalNewLine(text) {
+    if (Array.isArray(text) && text.length === 2) {
+      return (
+        <>
+          {text[0]}
+          <br />
+          {text[1]}
+        </>
+      );
+    } else {
+      if (Array.isArray(text)) {
+        return text.join(' ');
+      }
+      return text;
+    }
+  }
 
   return (
     <>
@@ -176,42 +145,14 @@ const Contact = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
-
               <ContactForm serviceOptions={serviceOptions} />
+
               {/* Contact Info */}
               <motion.div variants={fadeRight(0.2)} className='flex flex-col justify-center'>
                 <h2 className="text-2xl font-playfair mt-2 mb-6">Get In Touch</h2>
 
-                <div className="space-y-6">
-                  {[
-                    {
-                      icon: <Phone className="h-5 w-5 text-gold" />,
-                      title: 'Phone/WhatsApp',
-                      text: '+91 8652429808',
-                      href: 'tel:8652429808',
-                      note: 'Available Mon-Sat, 10 AM - 7 PM',
-                    },
-                    {
-                      icon: <Mail className="h-5 w-5 text-gold" />,
-                      title: 'Email',
-                      text: 'siyajewels04@gmail.com',
-                      href: 'mailto:siyajewels04@gmail.com',
-                      note: 'We respond within 24 hours',
-                    },
-                    {
-                      icon: <Instagram className="h-5 w-5 text-gold" />,
-                      title: 'Instagram',
-                      text: '@official_harishsoni',
-                      href: 'https://instagram.com/official_harishsoni',
-                      note: 'Follow us for latest updates',
-                    },
-                    {
-                      icon: <MapPin className="h-5 w-5 text-gold" />,
-                      title: 'Office Location',
-                      text: 'Mumbai, Maharashtra, India',
-                      note: 'Meetings by appointment only',
-                    },
-                  ].map((item, i) => (
+                <div className="space-y-4">
+                  {contactInfo.map((item, i) => (
                     <div key={i} className="flex items-start group">
                       <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 group-hover:bg-gold/30 transition-colors">
                         {item.icon}
@@ -223,7 +164,9 @@ const Contact = () => {
                             {item.text}
                           </a>
                         ) : (
-                          <p className="text-gray-700">{item.text}</p>
+                          <p className="text-gray-700">
+                            {renderTextWithOptionalNewLine(item.text)}
+                          </p>
                         )}
                         <p className="text-gray-500 text-sm mt-1">{item.note}</p>
                       </div>
@@ -231,7 +174,7 @@ const Contact = () => {
                   ))}
                 </div>
 
-                <div className="mt-10">
+                <div className="mt-8">
                   <Button onClick={openWhatsApp} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white group">
                     <MessageCircle className=" h-4 w-4" />
                     Chat on WhatsApp
@@ -275,27 +218,6 @@ const Contact = () => {
   );
 };
 
-const faqs = [
-  {
-    question: 'What areas do you serve?',
-    answer: 'While we\'re based in Mumbai, we work with clients globally...',
-  },
-  {
-    question: 'How long does it take to complete a project?',
-    answer: 'Project timelines vary based on the scope and complexity...',
-  },
-  {
-    question: 'Do you provide revisions for designs?',
-    answer: 'Yes, our packages include a specific number of revision rounds...',
-  },
-  {
-    question: 'How do we get started with a project?',
-    answer: 'The process begins with a consultation to understand your requirements...',
-  },
-  {
-    question: 'Do you offer maintenance services after project completion?',
-    answer: 'Yes, we provide ongoing maintenance and support packages...',
-  },
-];
+
 
 export default Contact;
