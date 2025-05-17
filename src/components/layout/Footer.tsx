@@ -7,7 +7,7 @@ import Logo from '../ui/Logo';
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-black pt-16 pb-6">
+    <footer className="bg-white text-black pt-6 pb-6">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div className='flex flex-col items-start'>
@@ -88,7 +88,7 @@ const Footer = () => {
               </li>
               <li className="flex">
                 {/* <Mail size={18} className="text-gold mr-2 flex-shrink-0" /> */}
-                <a href="https://wa.me/8652429808" className="mt-4 px-4 py-2 rounded-lg bg-gold hover:bg-gold-dark text-whitez">
+                <a href="https://wa.me/8652429808" className="mt-4 px-4 py-2 rounded-lg bg-gold hover:bg-gold-dark text-white">
                   WhatsApp Us
                 </a>
               </li>

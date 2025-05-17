@@ -37,7 +37,7 @@ const contactInfo = [
   {
     icon: <MapPin className="h-5 w-5 text-gold" />,
     title: 'Office Location',
-    text: ['Head Office: Mumbai, Maharashtra, India', 'Branch Office: Surat, Ahemdabad, Banglore, Ujjain, India'],
+    text: ['Head Office: Mumbai, Maharashtra, India.', 'Branch Office: Surat, Ahemdabad, Banglore, Ujjain, India.'],
     note: 'Meetings by appointment only',
   },
 ]
@@ -100,7 +100,7 @@ const Contact = () => {
   return (
     <>
       <Navbar />
-      <main className="pt-24 pb-16">
+      <main className="pt-24 pb-10">
         {/* Header Section */}
         <section ref={ref} className="container py-12 pb-8">
           <motion.div
@@ -164,7 +164,7 @@ const Contact = () => {
                             {item.text}
                           </a>
                         ) : (
-                          <p className="text-gray-700">
+                          <p className="text-gray-700 max-w-64">
                             {renderTextWithOptionalNewLine(item.text)}
                           </p>
                         )}
@@ -186,7 +186,7 @@ const Contact = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 bg-white">
+        <section className="pt-16 bg-white">
           <motion.div
             className="container"
             variants={staggerContainer}
