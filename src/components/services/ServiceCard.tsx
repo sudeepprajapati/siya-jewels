@@ -74,7 +74,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             asChild
             variant="outline"
             onClick={onLearnMore}
-            className="w-full border-gold text-gold hover:bg-gold/10 mt-auto"
+            className="w-full border-gold text-gold hover:bg-gold/10 mt-auto cursor-pointer"
           >
             <p>Learn More</p>
           </Button>
