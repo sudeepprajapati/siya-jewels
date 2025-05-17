@@ -43,9 +43,9 @@ const ExpertiseCard: React.FC<ExpertiseCardProps> = ({ id, title, icon: Icon, de
             <Card className="luxury-card h-full transition-all hover:-translate-y-1 duration-300 overflow-hidden border-0 bg-white">
                 <CardHeader className={cn(`bg-gradient-to-r p-6`, gradient)}>
                     <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-4">
-                        <Icon className="text-purple-dark h-8 w-8" />
+                        <Icon className="text-white h-8 w-8" />
                     </div>
-                    <CardTitle className="text-purple-dark text-xl font-playfair">{title}</CardTitle>
+                    <CardTitle className="text-white text-xl font-playfair">{title}</CardTitle>
                 </CardHeader>
 
                 <CardContent className="pt-6">
