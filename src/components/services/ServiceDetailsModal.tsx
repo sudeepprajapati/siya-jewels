@@ -114,7 +114,7 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
                                     className="absolute left-2 top-1/2 -translate-y-1/2 z-10 md:hidden"
                                 >
                                     <div className="w-12 h-12 rounded-full bg-black/10 backdrop-blur-md flex items-center justify-center">
-                                        <ArrowLeft className="text-black h-6 w-6" />
+                                        <ArrowLeft className="text-gold h-6 w-6" />
                                     </div>
                                 </button>
                                 <button
@@ -122,7 +122,7 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
                                     className="absolute right-2 top-1/2 -translate-y-1/2 z-10 md:hidden"
                                 >
                                     <div className="w-12 h-12 rounded-full bg-black/10 backdrop-blur-md flex items-center justify-center">
-                                        <ArrowRight className="text-black h-6 w-6" />
+                                        <ArrowRight className="text-gold h-6 w-6" />
                                     </div>
                                 </button>
                             </>
