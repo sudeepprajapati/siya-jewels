@@ -81,7 +81,6 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
                                             <video
                                                 key={idx}
                                                 controls
-                                                autoPlay
                                                 muted
                                                 loop
                                                 className="w-full h-60 sm:h-64 md:h-72 object-cover rounded-lg"
