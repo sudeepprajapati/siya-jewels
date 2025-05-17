@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, X, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -9,7 +9,7 @@ interface ServiceDetailsModalProps {
     item: {
         title: string;
         description: string;
-        media?: string[]; // Mixed array of image and video paths
+        media?: string[];
     };
     category: string;
     onClose: () => void;
@@ -20,7 +20,6 @@ const isImage = (src: string) => /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(src);
 
 const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, category, onClose }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
-
     const scrollByAmount = 400;
 
     const scroll = (direction: 'left' | 'right') => {
@@ -31,57 +30,31 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
             });
         }
     };
+
+    useEffect(() => {
+        // Lock body scroll when modal is open
+        document.body.style.overflow = 'hidden';
+
+        // Push a new state to history
+        const state = { modal: true };
+        window.history.pushState(state, '');
+
+        // Listen for browser back button
+        const handlePopState = () => {
+            onClose();
+        };
+        window.addEventListener('popstate', handlePopState);
+
+        return () => {
+            document.body.style.overflow = '';
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, [onClose]);
+
     return (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
             <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
                 <div className="relative">
-                    {/* <div className="overflow-x-scroll  my-1 md:my-0 md:overflow-hidden">
-                        {Array.isArray(item.media) && item.media.length > 0 ? (
-                            <div
-                                className={cn(
-                                    ' gap-1 p-1 items-center h-72 w-full md:h-full',
-                                    item.media.length === 1
-                                        ? 'flex md:p-0 justify-center overflow-hidden items-center !h-[22rem]'
-                                        : item.media.length === 2 ?
-                                            'flex md:grid md:grid-cols-2 '
-                                            : item.media.length === 3
-                                                ? 'flex md:grid md:grid-cols-3'
-                                                : item.media.length === 4
-                                                    ? 'flex md:grid md:grid-cols-4 '
-                                                    : 'flex md:grid md:grid-cols-5 '
-                                )}
-                            >
-                                {item.media.map((src, idx) =>
-                                    isVideo(src) ? (
-                                        <video
-                                            key={idx}
-                                            controls
-                                            autoPlay
-                                            muted
-                                            loop
-                                            className="w-full h-60 sm:h-64 md:h-72 object-cover rounded-lg"
-                                        >
-                                            <source src={src} type="video/mp4" />
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    ) : isImage(src) ? (
-                                        <img
-                                            key={idx}
-                                            src={src}
-                                            alt={`${item.title} ${idx + 1}`}
-                                            className={"w-full object-cover rounded-lg"}
-                                        />
-                                    ) : null
-                                )}
-                                <ArrowRight size={16} className="top-10 right-10 z-10" />
-                            </div>
-                        ) : (
-                            <div className="w-full h-full bg-gray-200 flex items-center justify-center rounded-lg">
-                                <span className="text-gray-500">No Media Available</span>
-                            </div>
-                        )}
-                    </div> */}
-
                     <div className="relative my-1 md:my-0">
                         {/* Scrollable container */}
                         <div
@@ -133,7 +106,7 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
                             )}
                         </div>
 
-                        {/* Left Scroll Button (small screens only) */}
+                        {/* Left and Right Scroll Buttons (small screens only) */}
                         {item.media.length > 1 && (
                             <>
                                 <button
@@ -144,8 +117,6 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
                                         <ArrowLeft className="text-black h-6 w-6" />
                                     </div>
                                 </button>
-
-                                {/* Right Scroll Button (small screens only) */}
                                 <button
                                     onClick={() => scroll('right')}
                                     className="absolute right-2 top-1/2 -translate-y-1/2 z-10 md:hidden"
@@ -184,7 +155,7 @@ const ServiceDetailsModal: React.FC<ServiceDetailsModalProps> = ({ item, categor
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 
