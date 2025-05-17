@@ -4,11 +4,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
-import ThreeCanvas from '../components/3d/ThreeCanvas';
-import GoldRing from '../components/3d/GoldRing';
-import Diamond from '../components/3d/Diamond';
 import PortfolioCard from '@/components/Portfolio/PortfolioCard';
 import AboutHeader from '@/components/About/AboutHeader';
 import PortfolioModal from '@/components/Portfolio/PortfolioModal';
@@ -40,20 +36,47 @@ const portfolioCategories = [
 ];
 
 const portfolioItems = [
-  // {
-  //   id: 1,
-  //   title: 'Diamond Ring Collection',
-  //   category: 'Jewellery CAD',
-  //   image: '/diamond.webp',
-  //   description: 'CAD design and rendering for a premium diamond ring collection.'
-  // },
+  {
+    id: 1,
+    title: 'Xaneur – Innovate, Design & Elevate.',
+    category: 'Web Development',
+    image: '/assets/images/xaneur.com.png',
+    link: 'https://xaneur.com/',
+    description: 'AI automation, web and app development to streamline business workflows.'
+  },
   {
     id: 2,
-    title: 'Gold Emporium E-commerce',
+    title: 'Agentic Bharat',
     category: 'Web Development',
-    image: '/assets/images/webdev2.webp',
-    description: 'Custom e-commerce platform for a high-end Jewellery retailer.'
+    image: '/assets/images/agenticbharat.ai.png',
+    link: 'https://agenticbharat.ai/',
+    description: 'India’s platform for innovation, leadership, and growth in agentic AI.'
   },
+  {
+    id: 3,
+    title: 'Cafe Desire Online',
+    category: 'Web Development',
+    image: '/assets/images/cafedesireonline.com.png',
+    link: 'https://www.cafedesireonline.com',
+    description: 'E-commerce site for Cafe Desire’s premium beverages and accessories.'
+  },
+  {
+    id: 4,
+    title: 'Chanson Quality Water – Alkaline Water Ionizers & Purifiers India',
+    category: 'Web Development',
+    image: '/assets/images/chansonqualitywater.com.png',
+    link: 'https://chansonqualitywater.com/',
+    description: 'Alkaline water ionizers and purifiers for healthier drinking water in India.'
+  },
+  {
+    id: 5,
+    title: 'Aarya24KT – Pure 24kt Gold Foil Gifts & Artifacts',
+    category: 'Web Development',
+    image: '/assets/images/aarya24kt.in.png',
+    link: 'https://aarya24kt.in/',
+    description: 'Premium 24kt gold foil gifts, decor, and corporate collectibles online.'
+  },
+
   // {
   //   id: 3,
   //   title: 'Luxury Watch Campaign',
@@ -127,7 +150,7 @@ const Portfolio = () => {
       <Navbar />
       <main className="pt-24">
         {/* Header */}
-        <section className="container py-12 pb-4">
+        <section className="container pt-12 pb-2">
           <AboutHeader
             portfolioCategories={portfolioCategories}
             filter={filter}
@@ -136,8 +159,8 @@ const Portfolio = () => {
         </section>
 
         {/* Portfolio Grid */}
-        <section className="container py-8">
-          <div className=" h-72 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        <section className="container py-6">
+          <div className=" h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
             {filteredItems.map((item, index) => (
               <PortfolioCard item={item} onClick={openItemDetails} />
             ))}

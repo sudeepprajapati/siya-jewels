@@ -10,6 +10,7 @@ interface PortfolioModalProps {
         image: string;
         description: string;
         category: string;
+        link: string;
     };
     onClose: () => void;
 }
@@ -41,7 +42,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
             <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
                 <div className="relative overflow-hidden">
                     <div className="w-full flex p-0 justify-center items-center ">
-                        <a href="https://www.amazon.in" className='cursor-pointer'>
+                        <a href={item.link} target="_blank" className='cursor-pointer'>
                             <img
                                 src={item.image}
                                 alt={item.title}
@@ -61,7 +62,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
                         <h2 className="text-2xl font-playfair">{item.title}</h2>
                     </div>
                     <p className="text-gray-700 mb-6">{item.description}</p>
-                    <div className="border-t border-gray-200 pt-6 mt-6">
+                    {/* <div className="border-t border-gray-200 pt-6 mt-6">
                         <h3 className="font-medium mb-4">Project Details</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="flex items-center">
@@ -81,13 +82,13 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
                                 <span className="text-gray-600">4 weeks</span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="flex justify-end mt-6">
                         <Button variant="outline" onClick={onClose} className="mr-2">
                             Close
                         </Button>
                         <Button asChild className="bg-gold hover:bg-gold-dark text-white">
-                            <a href="/contact">Request Similar</a>
+                            <a href={item.link} target="_blank">View Project</a>
                         </Button>
                     </div>
                 </div>
